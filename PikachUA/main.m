@@ -1,8 +1,8 @@
 //
 //  main.m
-//  PikachUA
+//  MapTest
 //
-//  Created by students@deti on 07/06/18.
+//  Created by students@deti on 09/05/18.
 //  Copyright © 2018 pikachua@ua.pt. All rights reserved.
 //
 

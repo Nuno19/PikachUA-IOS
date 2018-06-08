@@ -1,15 +1,34 @@
 //
 //  ViewController.h
-//  PikachUA
+//  MapTest
 //
-//  Created by students@deti on 07/06/18.
+//  Created by students@deti on 09/05/18.
 //  Copyright © 2018 pikachua@ua.pt. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/Mapkit.h>
+#import "PokemonInst+CoreDataClass.h"
+#import "Pokemon+CoreDataClass.h"
+#import "ItemInst+CoreDataClass.h"
+#import "Pokedex+CoreDataClass.h"
+@import Firebase;
 
-@interface ViewController : UIViewController
 
+@interface ViewController : UIViewController <CLLocationManagerDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
+
+@property (nonatomic, strong) AppDelegate *appDelegate;
+
+- (IBAction)firebasebutton:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *fireLabel;
+@property (strong,nonatomic) FIRDatabaseReference *ref;
+
+@property (weak, nonatomic) IBOutlet MKMapView *map;
 
 @end
-

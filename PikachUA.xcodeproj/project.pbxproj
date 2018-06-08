@@ -7,27 +7,78 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5721E8D54BD76B0375858DAA /* libPods-PikachUA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F833F579CA92141CA9F177D5 /* libPods-PikachUA.a */; };
+		642984FA20CAAD260055223D /* MonsterBioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642984F920CAAD260055223D /* MonsterBioController.m */; };
+		6429850020CAADC60055223D /* MapTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 642984FE20CAADC60055223D /* MapTest.xcdatamodeld */; };
+		6466BC3620C97C230040D50E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6466BC3520C97C230040D50E /* AppDelegate.m */; };
+		6466BC3A20C97FB80040D50E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6466BC3920C97FB80040D50E /* GoogleService-Info.plist */; };
+		6466BC3F20C9AAD50040D50E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6466BC3E20C9AAD50040D50E /* Main.storyboard */; };
 		64F2F71220C974D4006A4061 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F71120C974D4006A4061 /* main.m */; };
-		64F2F71520C974D4006A4061 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F71420C974D4006A4061 /* AppDelegate.m */; };
-		64F2F71820C974D4006A4061 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F71720C974D4006A4061 /* ViewController.m */; };
-		64F2F71B20C974D4006A4061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F2F71920C974D4006A4061 /* Main.storyboard */; };
-		64F2F71E20C974D4006A4061 /* PikachUA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F71C20C974D4006A4061 /* PikachUA.xcdatamodeld */; };
-		64F2F72020C974D4006A4061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64F2F71F20C974D4006A4061 /* Assets.xcassets */; };
-		64F2F72320C974D4006A4061 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F2F72120C974D4006A4061 /* LaunchScreen.storyboard */; };
+		64F2F72C20C974F7006A4061 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F2F72B20C974F7006A4061 /* MapKit.framework */; };
+		64F2F79320C97716006A4061 /* BagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F76D20C97716006A4061 /* BagViewController.m */; };
+		64F2F79520C97716006A4061 /* CatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F77020C97716006A4061 /* CatchViewController.m */; };
+		64F2F79620C97716006A4061 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F77220C97716006A4061 /* CollectionCell.m */; };
+		64F2F79720C97716006A4061 /* CollectionUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F77420C97716006A4061 /* CollectionUIController.m */; };
+		64F2F79820C97716006A4061 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F77620C97716006A4061 /* CollectionViewCell.m */; };
+		64F2F79920C97716006A4061 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F2F77720C97716006A4061 /* Info.plist */; };
+		64F2F79B20C97716006A4061 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F77B20C97716006A4061 /* MCManager.m */; };
+		64F2F79C20C97716006A4061 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F77D20C97716006A4061 /* MenuViewController.m */; };
+		64F2F79E20C97716006A4061 /* TradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F78120C97716006A4061 /* TradeViewController.m */; };
+		64F2F7A020C97716006A4061 /* RemoveItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F78520C97716006A4061 /* RemoveItemsViewController.m */; };
+		64F2F7A120C97716006A4061 /* RestockStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F78720C97716006A4061 /* RestockStationViewController.m */; };
+		64F2F7A220C97716006A4061 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F78920C97716006A4061 /* SettingsViewController.m */; };
+		64F2F7A320C97716006A4061 /* StorageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F78B20C97716006A4061 /* StorageViewController.m */; };
+		64F2F7A420C97716006A4061 /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F78D20C97716006A4061 /* TableCell.m */; };
+		64F2F7A620C97716006A4061 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F79120C97716006A4061 /* ViewController.m */; };
+		64F2F7A820C97758006A4061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64F2F7A720C97758006A4061 /* Assets.xcassets */; };
+		64F2F7AD20C977B1006A4061 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F2F7A920C977B1006A4061 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B6BA6ED2BB1F6AC340596FC /* Pods-PikachUA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PikachUA.release.xcconfig"; path = "Pods/Target Support Files/Pods-PikachUA/Pods-PikachUA.release.xcconfig"; sourceTree = "<group>"; };
+		642984F820CAAD260055223D /* MonsterBioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBioController.h; sourceTree = "<group>"; };
+		642984F920CAAD260055223D /* MonsterBioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBioController.m; sourceTree = "<group>"; };
+		642984FF20CAADC60055223D /* MapTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapTest.xcdatamodel; sourceTree = "<group>"; };
+		6466BC3420C97C230040D50E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6466BC3520C97C230040D50E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6466BC3920C97FB80040D50E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6466BC3E20C9AAD50040D50E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		64F2F70D20C974D4006A4061 /* PikachUA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PikachUA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F2F71120C974D4006A4061 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64F2F71320C974D4006A4061 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		64F2F71420C974D4006A4061 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		64F2F71620C974D4006A4061 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		64F2F71720C974D4006A4061 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		64F2F71A20C974D4006A4061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		64F2F71D20C974D4006A4061 /* PikachUA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PikachUA.xcdatamodel; sourceTree = "<group>"; };
-		64F2F71F20C974D4006A4061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		64F2F72220C974D4006A4061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		64F2F72420C974D4006A4061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64F2F72B20C974F7006A4061 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		64F2F76C20C97716006A4061 /* BagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BagViewController.h; sourceTree = "<group>"; };
+		64F2F76D20C97716006A4061 /* BagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BagViewController.m; sourceTree = "<group>"; };
+		64F2F76F20C97716006A4061 /* CatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatchViewController.h; sourceTree = "<group>"; };
+		64F2F77020C97716006A4061 /* CatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatchViewController.m; sourceTree = "<group>"; };
+		64F2F77120C97716006A4061 /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
+		64F2F77220C97716006A4061 /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
+		64F2F77320C97716006A4061 /* CollectionUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUIController.h; sourceTree = "<group>"; };
+		64F2F77420C97716006A4061 /* CollectionUIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUIController.m; sourceTree = "<group>"; };
+		64F2F77520C97716006A4061 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		64F2F77620C97716006A4061 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		64F2F77720C97716006A4061 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64F2F77A20C97716006A4061 /* MCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCManager.h; sourceTree = "<group>"; };
+		64F2F77B20C97716006A4061 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
+		64F2F77C20C97716006A4061 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		64F2F77D20C97716006A4061 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		64F2F78020C97716006A4061 /* TradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeViewController.h; sourceTree = "<group>"; };
+		64F2F78120C97716006A4061 /* TradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeViewController.m; sourceTree = "<group>"; };
+		64F2F78420C97716006A4061 /* RemoveItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveItemsViewController.h; sourceTree = "<group>"; };
+		64F2F78520C97716006A4061 /* RemoveItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveItemsViewController.m; sourceTree = "<group>"; };
+		64F2F78620C97716006A4061 /* RestockStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestockStationViewController.h; sourceTree = "<group>"; };
+		64F2F78720C97716006A4061 /* RestockStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestockStationViewController.m; sourceTree = "<group>"; };
+		64F2F78820C97716006A4061 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		64F2F78920C97716006A4061 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		64F2F78A20C97716006A4061 /* StorageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageViewController.h; sourceTree = "<group>"; };
+		64F2F78B20C97716006A4061 /* StorageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageViewController.m; sourceTree = "<group>"; };
+		64F2F78C20C97716006A4061 /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCell.h; sourceTree = "<group>"; };
+		64F2F78D20C97716006A4061 /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCell.m; sourceTree = "<group>"; };
+		64F2F79020C97716006A4061 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		64F2F79120C97716006A4061 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		64F2F7A720C97758006A4061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		64F2F7AA20C977B1006A4061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C18CFE46B4388C528E1A7CE5 /* Pods-PikachUA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PikachUA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PikachUA/Pods-PikachUA.debug.xcconfig"; sourceTree = "<group>"; };
+		F833F579CA92141CA9F177D5 /* libPods-PikachUA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PikachUA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64F2F72C20C974F7006A4061 /* MapKit.framework in Frameworks */,
+				5721E8D54BD76B0375858DAA /* libPods-PikachUA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +99,8 @@
 			children = (
 				64F2F70F20C974D4006A4061 /* PikachUA */,
 				64F2F70E20C974D4006A4061 /* Products */,
+				64F2F72A20C974F7006A4061 /* Frameworks */,
+				9EE60F0EB90B5808763FDA6A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,15 +115,44 @@
 		64F2F70F20C974D4006A4061 /* PikachUA */ = {
 			isa = PBXGroup;
 			children = (
-				64F2F71320C974D4006A4061 /* AppDelegate.h */,
-				64F2F71420C974D4006A4061 /* AppDelegate.m */,
-				64F2F71620C974D4006A4061 /* ViewController.h */,
-				64F2F71720C974D4006A4061 /* ViewController.m */,
-				64F2F71920C974D4006A4061 /* Main.storyboard */,
-				64F2F71F20C974D4006A4061 /* Assets.xcassets */,
-				64F2F72120C974D4006A4061 /* LaunchScreen.storyboard */,
-				64F2F72420C974D4006A4061 /* Info.plist */,
-				64F2F71C20C974D4006A4061 /* PikachUA.xcdatamodeld */,
+				6466BC3E20C9AAD50040D50E /* Main.storyboard */,
+				6466BC3920C97FB80040D50E /* GoogleService-Info.plist */,
+				6466BC3420C97C230040D50E /* AppDelegate.h */,
+				6466BC3520C97C230040D50E /* AppDelegate.m */,
+				64F2F7A920C977B1006A4061 /* LaunchScreen.storyboard */,
+				64F2F7A720C97758006A4061 /* Assets.xcassets */,
+				64F2F76C20C97716006A4061 /* BagViewController.h */,
+				64F2F76D20C97716006A4061 /* BagViewController.m */,
+				64F2F76F20C97716006A4061 /* CatchViewController.h */,
+				64F2F77020C97716006A4061 /* CatchViewController.m */,
+				64F2F77120C97716006A4061 /* CollectionCell.h */,
+				64F2F77220C97716006A4061 /* CollectionCell.m */,
+				64F2F77320C97716006A4061 /* CollectionUIController.h */,
+				64F2F77420C97716006A4061 /* CollectionUIController.m */,
+				64F2F77520C97716006A4061 /* CollectionViewCell.h */,
+				64F2F77620C97716006A4061 /* CollectionViewCell.m */,
+				64F2F77720C97716006A4061 /* Info.plist */,
+				64F2F77A20C97716006A4061 /* MCManager.h */,
+				64F2F77B20C97716006A4061 /* MCManager.m */,
+				64F2F77C20C97716006A4061 /* MenuViewController.h */,
+				64F2F77D20C97716006A4061 /* MenuViewController.m */,
+				642984F820CAAD260055223D /* MonsterBioController.h */,
+				642984F920CAAD260055223D /* MonsterBioController.m */,
+				64F2F78020C97716006A4061 /* TradeViewController.h */,
+				64F2F78120C97716006A4061 /* TradeViewController.m */,
+				64F2F78420C97716006A4061 /* RemoveItemsViewController.h */,
+				64F2F78520C97716006A4061 /* RemoveItemsViewController.m */,
+				64F2F78620C97716006A4061 /* RestockStationViewController.h */,
+				64F2F78720C97716006A4061 /* RestockStationViewController.m */,
+				64F2F78820C97716006A4061 /* SettingsViewController.h */,
+				64F2F78920C97716006A4061 /* SettingsViewController.m */,
+				64F2F78A20C97716006A4061 /* StorageViewController.h */,
+				64F2F78B20C97716006A4061 /* StorageViewController.m */,
+				64F2F78C20C97716006A4061 /* TableCell.h */,
+				64F2F78D20C97716006A4061 /* TableCell.m */,
+				64F2F79020C97716006A4061 /* ViewController.h */,
+				64F2F79120C97716006A4061 /* ViewController.m */,
+				642984FE20CAADC60055223D /* MapTest.xcdatamodeld */,
 				64F2F71020C974D4006A4061 /* Supporting Files */,
 			);
 			path = PikachUA;
@@ -82,6 +166,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		64F2F72A20C974F7006A4061 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64F2F72B20C974F7006A4061 /* MapKit.framework */,
+				F833F579CA92141CA9F177D5 /* libPods-PikachUA.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9EE60F0EB90B5808763FDA6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C18CFE46B4388C528E1A7CE5 /* Pods-PikachUA.debug.xcconfig */,
+				4B6BA6ED2BB1F6AC340596FC /* Pods-PikachUA.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +191,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64F2F72720C974D4006A4061 /* Build configuration list for PBXNativeTarget "PikachUA" */;
 			buildPhases = (
+				8C3105C547B29272CF7F6B3D /* [CP] Check Pods Manifest.lock */,
 				64F2F70920C974D4006A4061 /* Sources */,
 				64F2F70A20C974D4006A4061 /* Frameworks */,
 				64F2F70B20C974D4006A4061 /* Resources */,
+				C97F800CE5B572FE18D2E298 /* [CP] Embed Pods Frameworks */,
+				763DB463EC28FBD6E0481C5B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -113,8 +218,13 @@
 				TargetAttributes = {
 					64F2F70C20C974D4006A4061 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = PHQ37KZRYM;
+						DevelopmentTeam = F7297DC677;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -141,41 +251,97 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64F2F72320C974D4006A4061 /* LaunchScreen.storyboard in Resources */,
-				64F2F72020C974D4006A4061 /* Assets.xcassets in Resources */,
-				64F2F71B20C974D4006A4061 /* Main.storyboard in Resources */,
+				64F2F7AD20C977B1006A4061 /* LaunchScreen.storyboard in Resources */,
+				6466BC3F20C9AAD50040D50E /* Main.storyboard in Resources */,
+				64F2F7A820C97758006A4061 /* Assets.xcassets in Resources */,
+				6466BC3A20C97FB80040D50E /* GoogleService-Info.plist in Resources */,
+				64F2F79920C97716006A4061 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		763DB463EC28FBD6E0481C5B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PikachUA/Pods-PikachUA-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C3105C547B29272CF7F6B3D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C97F800CE5B572FE18D2E298 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PikachUA/Pods-PikachUA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		64F2F70920C974D4006A4061 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64F2F71820C974D4006A4061 /* ViewController.m in Sources */,
-				64F2F71520C974D4006A4061 /* AppDelegate.m in Sources */,
+				64F2F7A420C97716006A4061 /* TableCell.m in Sources */,
+				64F2F79320C97716006A4061 /* BagViewController.m in Sources */,
+				64F2F7A320C97716006A4061 /* StorageViewController.m in Sources */,
+				64F2F79620C97716006A4061 /* CollectionCell.m in Sources */,
+				64F2F7A220C97716006A4061 /* SettingsViewController.m in Sources */,
+				64F2F7A020C97716006A4061 /* RemoveItemsViewController.m in Sources */,
 				64F2F71220C974D4006A4061 /* main.m in Sources */,
-				64F2F71E20C974D4006A4061 /* PikachUA.xcdatamodeld in Sources */,
+				64F2F79B20C97716006A4061 /* MCManager.m in Sources */,
+				64F2F79520C97716006A4061 /* CatchViewController.m in Sources */,
+				64F2F79E20C97716006A4061 /* TradeViewController.m in Sources */,
+				64F2F7A120C97716006A4061 /* RestockStationViewController.m in Sources */,
+				64F2F7A620C97716006A4061 /* ViewController.m in Sources */,
+				6429850020CAADC60055223D /* MapTest.xcdatamodeld in Sources */,
+				64F2F79820C97716006A4061 /* CollectionViewCell.m in Sources */,
+				64F2F79720C97716006A4061 /* CollectionUIController.m in Sources */,
+				64F2F79C20C97716006A4061 /* MenuViewController.m in Sources */,
+				6466BC3620C97C230040D50E /* AppDelegate.m in Sources */,
+				642984FA20CAAD260055223D /* MonsterBioController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		64F2F71920C974D4006A4061 /* Main.storyboard */ = {
+		64F2F7A920C977B1006A4061 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				64F2F71A20C974D4006A4061 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		64F2F72120C974D4006A4061 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				64F2F72220C974D4006A4061 /* Base */,
+				64F2F7AA20C977B1006A4061 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -273,25 +439,31 @@
 		};
 		64F2F72820C974D4006A4061 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C18CFE46B4388C528E1A7CE5 /* Pods-PikachUA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PHQ37KZRYM;
+				DEVELOPMENT_TEAM = F7297DC677;
 				INFOPLIST_FILE = PikachUA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pt.ua.cm.PikachUA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		64F2F72920C974D4006A4061 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B6BA6ED2BB1F6AC340596FC /* Pods-PikachUA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PHQ37KZRYM;
+				DEVELOPMENT_TEAM = F7297DC677;
 				INFOPLIST_FILE = PikachUA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pt.ua.cm.PikachUA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -314,17 +486,18 @@
 				64F2F72920C974D4006A4061 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		64F2F71C20C974D4006A4061 /* PikachUA.xcdatamodeld */ = {
+		642984FE20CAADC60055223D /* MapTest.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				64F2F71D20C974D4006A4061 /* PikachUA.xcdatamodel */,
+				642984FF20CAADC60055223D /* MapTest.xcdatamodel */,
 			);
-			currentVersion = 64F2F71D20C974D4006A4061 /* PikachUA.xcdatamodel */;
-			path = PikachUA.xcdatamodeld;
+			currentVersion = 642984FF20CAADC60055223D /* MapTest.xcdatamodel */;
+			path = MapTest.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

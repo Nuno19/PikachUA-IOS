@@ -1,21 +1,27 @@
 //
 //  AppDelegate.m
-//  PikachUA
+//  MapTest
 //
-//  Created by students@deti on 07/06/18.
+//  Created by students@deti on 09/05/18.
 //  Copyright © 2018 pikachua@ua.pt. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // Use Firebase library to configure APIs
+    [FIRApp configure];
+    
+    //Configure Multipeer Manager
+    _mcManager = [[MCManager alloc] init];
+    
     // Override point for customization after application launch.
     return YES;
 }
@@ -53,12 +59,15 @@
 #pragma mark - Core Data stack
 
 @synthesize persistentContainer = _persistentContainer;
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSPersistentContainer *)persistentContainer {
     // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
     @synchronized (self) {
         if (_persistentContainer == nil) {
-            _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"PikachUA"];
+            _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"MapTest"];
             [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription, NSError *error) {
                 if (error != nil) {
                     // Replace this implementation with code to handle the error appropriately.
@@ -81,6 +90,72 @@
     
     return _persistentContainer;
 }
+
+- (NSManagedObjectContext
+   *)managedObjectContext {
+    // Returns the managed object context for the application (which is already bound to the persistent store
+                             //    coordinator for the application.)
+    
+    if (_managedObjectContext != nil) {
+            return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (!coordinator) {
+        return nil;
+    }
+    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    return _managedObjectContext;
+}
+
+
+- (NSManagedObjectModel
+   *)managedObjectModel {
+    // The managed object model for
+
+        if (_managedObjectModel != nil) {
+            return _managedObjectModel;
+        }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"MapTest" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
+}
+
+- (NSURL
+   *)applicationDocumentsDirectory {
+
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (NSPersistentStoreCoordinator
+   *)persistentStoreCoordinator {
+    // The persistent store
+            if (_persistentStoreCoordinator != nil) {
+                return _persistentStoreCoordinator;
+            }
+    
+    // Create the coordinator and store
+    
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"MapTest"];
+    NSError *error = nil;
+    NSString *failureReason =  @"There was an error creating or loading the application's saved data.";
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error]) {
+        // Report any  error we got.
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[NSLocalizedDescriptionKey] = @"Failed  to initialize the application's saved data";
+        dict[NSLocalizedFailureReasonErrorKey] =         failureReason;
+        dict[NSUnderlyingErrorKey] = error;
+        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+        
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+              
+    return _persistentStoreCoordinator;
+}
+              
 
 #pragma mark - Core Data Saving support
 
