@@ -16,21 +16,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"Pokedex"];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",_pokemon.nickname] ];
+    
+    _poked = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
+    
     //Pokedex *poke = self.pokemon[_pokemon[@"id"]];
     _name.text = _pokemon.nickname;
     _cp.text = _pokemon.value;
     _image.image = [UIImage imageNamed:_pokemon.nickname];
     
+    NSLog(@"%@", _poked);
+    //_poked = _pokemon.pokemon_id;
     
-    /*_poked = _pokemon.pokemon_id;
-    
-    _height.text = _poked.height;
-    _weight.text = _poked.weight;
+    _height.text = [NSString stringWithFormat:@"Heigth: %@", _poked.height];
+    _weight.text = [NSString stringWithFormat:@"Weigth: %@", _poked.weight];
     _pokedex.text = _poked.pokedex;
-    _nickname.text = _poked.nickname;*/
+    [_pokedex sizeToFit];
+    _nickname.text = _poked.nickname;
     
     // Do any additional setup after loading the view.
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

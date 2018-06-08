@@ -81,6 +81,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     _selectedRow = indexPath.row;
+    NSLog(@"SR: %ld", (long)_selectedRow);
     
     //[self performSegueWithIdentifier:@"showDetailSegue" sender:self];
 }
@@ -89,9 +90,10 @@
 
 -(void)prepareForSegue :(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showDetailSegue"]){
+        _selectedRow = [_collection indexPathsForSelectedItems][0].row;
         MonsterBioController *controller = (MonsterBioController *)segue.destinationViewController;
         controller.pokemon = _employeeCollection[_selectedRow];
-        
+        NSLog(@"PFS");
     }
 }
 /*
