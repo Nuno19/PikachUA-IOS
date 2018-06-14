@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FirebaseCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseDatabase.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseFunctions.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05D233ADADE8575BCCD56101E6039406</key>
+		<key>118CBE74BD0AA84D08B786E4A6AC95EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2BBFEAD56A7B5AD94B8C04CD007D7F4C</key>
+		<key>382E2C07D8E452314F90C77F40311E19</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>58885A79D8F2FE6A57DF1D65A1A33E7E</key>
+		<key>4C156E15C44F31B315E4B50DAAD9A057</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>58E7450DB13C5ECCE92D3C0DF7CF0903</key>
+		<key>504AEB90FF2ED75CFFDD27AACC0D1FDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CF4B35B9FC819386EB09219BC91827D7</key>
+		<key>65B3A53E12D55B1DA78A6ADD639087A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EAE45C123C22F83F258F201FDFBA835E</key>
+		<key>882ECD64D7F5789D508DE376C2F13874</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>96DA2B3CA4C432D76717E3ADD63147D9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B6F449E0DB8BDA0C52DFC80A0D2166D4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F8BCD9BD909F5942DBCEF22C42241694</key>
 		<dict>
 			<key>primary</key>
 			<true/>

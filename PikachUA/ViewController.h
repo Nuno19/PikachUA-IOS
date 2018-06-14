@@ -17,18 +17,25 @@
 @import Firebase;
 
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate>
+@interface ViewController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>
+
 
 @property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
 
-- (IBAction)firebasebutton:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UILabel *fireLabel;
 @property (strong,nonatomic) FIRDatabaseReference *ref;
+@property(strong, nonatomic) FIRFunctions *functions;
+
+@property(strong, nonatomic) CLLocation *lastLoc;
+
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 
+
+
+- (IBAction)firebasebutton:(id)sender;
+-(void) spawnPokemons;
 @end

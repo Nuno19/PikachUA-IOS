@@ -9,5 +9,7 @@ target 'PikachUA' do
   pod 'Firebase/Core'
   pod 'GoogleSignIn'
   pod 'Firebase/Database'
+  pod 'Firebase/Functions'
+
 
 end

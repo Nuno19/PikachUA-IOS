@@ -18,17 +18,21 @@ CLLocationManager *locationManager;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(spawnPokemons ) userInfo:nil repeats:YES];
     _ref = [[FIRDatabase database] reference];
     // Do any additional setup after loading the view, typically from a nib.
     locationManager = [[CLLocationManager alloc] init];
     [self getLocation];
-    MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.02, 0.02);
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.625421, -8.647336);
     MKCoordinateRegion region = MKCoordinateRegionMake(location, span);
     [_map setRegion:region animated:YES];
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    
+    self.functions = [FIRFunctions functions];
+    _map.delegate = self;
     
     [[ _ref child:@"pokemonsInst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
@@ -147,6 +151,9 @@ CLLocationManager *locationManager;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    
+}
 
 - (void)getLocation{
     
@@ -167,6 +174,7 @@ CLLocationManager *locationManager;
      didUpdateLocations:(NSArray *)locations {
     // If it's a relatively recent event, turn off updates to save power.
     CLLocation* location = [locations lastObject];
+    _lastLoc = location;
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (fabs(howRecent) < 15.0) {
@@ -179,9 +187,55 @@ CLLocationManager *locationManager;
         
         
         [_map setCenterCoordinate:location.coordinate animated:YES ];
+
         
     }
 }
+
+
+
+-(void) spawnPokemons {
+    
+    NSLog(@"SPawned");
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    NSString *lat = [NSString stringWithFormat:@"%f",_lastLoc.coordinate.latitude];
+    NSString *lon = [NSString stringWithFormat:@"%f",_lastLoc.coordinate.longitude];
+    
+    [data setValue:lat forKey:@"lat"];
+    [data setValue:lon forKey:@"long"];
+    
+    [[_functions HTTPSCallableWithName:@"getPokeInstLoc"] callWithObject:@{@"location":data}
+                                                              completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
+                                                                  if (error) {
+                                                                      if (error.domain == FIRFunctionsErrorDomain) {
+                                                                          FIRFunctionsErrorCode code = error.code;
+                                                                          NSString *message = error.localizedDescription;
+                                                                          NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
+                                                                          
+                                                                          NSLog(message,details,code);
+                                                                          return;
+                                                                      }
+                                                                      
+                                                                  }
+                                                                  [_map removeAnnotations:_map.annotations];
+                                                                  for (NSDictionary *dict in result.data[@"pokemon"]){
+                                                                      
+                                                                      double latP = [ dict[@"latitude"] doubleValue];
+                                                                      double lonP = [ dict[@"longitude"] doubleValue];
+                                                                      CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latP, lonP);
+                                                                      MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+                                                                      point.title = dict[@"name"];
+                                                                      point.subtitle = dict[@"id"];
+                                                                      point.coordinate = position;
+                                                                      [_map addAnnotation:point];
+                                                                      
+                                                                  }
+                                                              }];
+
+    
+}
+
 - (IBAction)firebasebutton:(id)sender {
     NSLog(@"FIREBUTTON");
     
