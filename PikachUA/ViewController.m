@@ -192,6 +192,7 @@ CLLocationManager *locationManager;
     }
 }
 
+
 -(void) spawnPokemons {
     
     NSLog(@"SPawned");
@@ -230,24 +231,31 @@ CLLocationManager *locationManager;
                                                                       
                                                                   }
                                                               }];
-
+    
     
 }
 
-
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-    NSLog(@"Annotation Clicked");
-    MKPinAnnotationView *annotationView = nil;
-    if ([annotation isKindOfClass:[MKPointAnnotation class]])
-    {
-        annotationView = (MKPinAnnotationView *)[_map dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
-        if (annotationView == nil)
-        {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
-            annotationView.canShowCallout = YES;
-            annotationView.animatesDrop = YES;
-        }
+    if ([[annotation title] isEqualToString:@"Current Location"]) {
+        return nil;
     }
-    return annotationView;
+    
+    MKAnnotationView *annView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
+    
+    
+    CGRect rect = CGRectMake(0,0,75,75);
+    UIGraphicsBeginImageContext( rect.size );
+    UIImage *image = [ UIImage imageNamed: annotation.title ];
+    [image drawInRect:rect];
+    UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSData *imageData = UIImagePNGRepresentation(picture1);
+    UIImage *img=[UIImage imageWithData:imageData];
+    
+    annView.image = img;
+    
+    annView.canShowCallout = YES;
+    return annView;
 }
 @end
