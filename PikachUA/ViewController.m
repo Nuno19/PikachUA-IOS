@@ -20,11 +20,12 @@ CLLocationManager *locationManager;
     [super viewDidLoad];
     
     [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(spawnPokemons ) userInfo:nil repeats:YES];
+    
     _ref = [[FIRDatabase database] reference];
     // Do any additional setup after loading the view, typically from a nib.
     locationManager = [[CLLocationManager alloc] init];
     [self getLocation];
-    MKCoordinateSpan span = MKCoordinateSpanMake(0.02, 0.02);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(40.625421, -8.647336);
     MKCoordinateRegion region = MKCoordinateRegionMake(location, span);
     [_map setRegion:region animated:YES];
@@ -34,6 +35,7 @@ CLLocationManager *locationManager;
     self.functions = [FIRFunctions functions];
     _map.delegate = self;
     
+    NSLog(@"%@", _appDelegate.userID);
     [[ _ref child:@"pokemonsInst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         // Get user value
@@ -43,7 +45,7 @@ CLLocationManager *locationManager;
             NSLog(@"ENTERED");
             NSDictionary *pokeDict = [dict objectForKey:key];
             
-            if([pokeDict[@"user_id"] isEqualToString:@"101545424584077913358"]){
+            if([pokeDict[@"user_id"] isEqualToString:_appDelegate.userID]){
             
                 PokemonInst *poke = [NSEntityDescription insertNewObjectForEntityForName:@"PokemonInst" inManagedObjectContext:_appDelegate.managedObjectContext];
             
@@ -69,7 +71,7 @@ CLLocationManager *locationManager;
         for(id key in dict){
             NSLog(@"ENTERED");
             NSDictionary *pokeDict = [dict objectForKey:key];
-            if([pokeDict[@"user_id"] isEqualToString:@"101545424584077913358"]){
+            if([pokeDict[@"user_id"] isEqualToString:_appDelegate.userID]){
                 //NSDictionary *pokeDict = [dict objectForKey:key];
             
                 Pokemon *poke = [NSEntityDescription insertNewObjectForEntityForName:@"Pokemon" inManagedObjectContext:_appDelegate.managedObjectContext];
@@ -126,7 +128,7 @@ CLLocationManager *locationManager;
 
             NSLog(@"ENTERED");
             NSDictionary *itemDict = [dict objectForKey:key];
-            if([itemDict[@"user_id"] isEqualToString:@"101545424584077913358"]){
+            if([itemDict[@"user_id"] isEqualToString:_appDelegate.userID]){
                 ItemInst *item = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInst" inManagedObjectContext:_appDelegate.managedObjectContext];
             
                 item.name = itemDict[@"name"];
@@ -184,15 +186,11 @@ CLLocationManager *locationManager;
               location.coordinate.latitude,
               location.coordinate.longitude);
         
-        
-        
         [_map setCenterCoordinate:location.coordinate animated:YES ];
 
         
     }
 }
-
-
 
 -(void) spawnPokemons {
     
@@ -236,24 +234,20 @@ CLLocationManager *locationManager;
     
 }
 
-- (IBAction)firebasebutton:(id)sender {
-    NSLog(@"FIREBUTTON");
-    
-    [[ _ref child:@"pokemonsMap"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSLog(@"ENTERED");
-        // Get user value
-        NSDictionary *dict = snapshot.value;
-        
-        for(id key in dict){
-            NSLog( @"%@", [dict objectForKey:key] );
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    NSLog(@"Annotation Clicked");
+    MKPinAnnotationView *annotationView = nil;
+    if ([annotation isKindOfClass:[MKPointAnnotation class]])
+    {
+        annotationView = (MKPinAnnotationView *)[_map dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
+        if (annotationView == nil)
+        {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+            annotationView.canShowCallout = YES;
+            annotationView.animatesDrop = YES;
         }
-        
-        NSLog(@"%@", dict);
-    }withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
-    
-    NSLog(@"EXIT");
-    
+    }
+    return annotationView;
 }
 @end

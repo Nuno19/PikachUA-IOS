@@ -34,8 +34,5 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 
-
-
-- (IBAction)firebasebutton:(id)sender;
 -(void) spawnPokemons;
 @end

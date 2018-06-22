@@ -14,7 +14,45 @@
 @implementation AppDelegate
 
 
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    // Perform any operations on signed in user here.
+    _userID = user.userID;                  // For client-side use only!
+    
+    if(_userID){
+        NSLog(@"%@", _userID);
+        NSDictionary *statusText = @{@"statusText": @"logged" };
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"loggedIn"
+         object:nil
+         userInfo:statusText];
+    }
+    
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:sourceApplication
+                                      annotation:annotation];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [GIDSignIn sharedInstance].clientID = @"203725394642-hvtkiosr6d709ls9na98sqvf1o0nos6o.apps.googleusercontent.com";
+    [GIDSignIn sharedInstance].delegate = self;
     
     // Use Firebase library to configure APIs
     [FIRApp configure];
@@ -169,5 +207,6 @@
         abort();
     }
 }
+
 
 @end

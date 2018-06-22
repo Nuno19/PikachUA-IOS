@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MCManager.h"
+@import GoogleSignIn;
 
 @import Firebase;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GIDSignInDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (nonatomic, strong) MCManager *mcManager;
+
+@property (nonatomic, strong) NSString *userID;
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

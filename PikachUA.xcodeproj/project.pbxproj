@@ -10,8 +10,9 @@
 		5721E8D54BD76B0375858DAA /* libPods-PikachUA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F833F579CA92141CA9F177D5 /* libPods-PikachUA.a */; };
 		642984FA20CAAD260055223D /* MonsterBioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642984F920CAAD260055223D /* MonsterBioController.m */; };
 		6429850020CAADC60055223D /* MapTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 642984FE20CAADC60055223D /* MapTest.xcdatamodeld */; };
+		644B12F920DD58ED00208CE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 644B12F820DD58ED00208CE9 /* GoogleService-Info.plist */; };
+		644B12FC20DD614C00208CE9 /* SignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B12FB20DD614C00208CE9 /* SignInController.m */; };
 		6466BC3620C97C230040D50E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6466BC3520C97C230040D50E /* AppDelegate.m */; };
-		6466BC3A20C97FB80040D50E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6466BC3920C97FB80040D50E /* GoogleService-Info.plist */; };
 		6466BC3F20C9AAD50040D50E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6466BC3E20C9AAD50040D50E /* Main.storyboard */; };
 		64F2F71220C974D4006A4061 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F2F71120C974D4006A4061 /* main.m */; };
 		64F2F72C20C974F7006A4061 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F2F72B20C974F7006A4061 /* MapKit.framework */; };
@@ -39,9 +40,11 @@
 		642984F820CAAD260055223D /* MonsterBioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBioController.h; sourceTree = "<group>"; };
 		642984F920CAAD260055223D /* MonsterBioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBioController.m; sourceTree = "<group>"; };
 		642984FF20CAADC60055223D /* MapTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapTest.xcdatamodel; sourceTree = "<group>"; };
+		644B12F820DD58ED00208CE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		644B12FA20DD614C00208CE9 /* SignInController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignInController.h; sourceTree = "<group>"; };
+		644B12FB20DD614C00208CE9 /* SignInController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInController.m; sourceTree = "<group>"; };
 		6466BC3420C97C230040D50E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6466BC3520C97C230040D50E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6466BC3920C97FB80040D50E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6466BC3E20C9AAD50040D50E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		64F2F70D20C974D4006A4061 /* PikachUA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PikachUA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F2F71120C974D4006A4061 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -116,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				6466BC3E20C9AAD50040D50E /* Main.storyboard */,
-				6466BC3920C97FB80040D50E /* GoogleService-Info.plist */,
 				6466BC3420C97C230040D50E /* AppDelegate.h */,
 				6466BC3520C97C230040D50E /* AppDelegate.m */,
 				64F2F7A920C977B1006A4061 /* LaunchScreen.storyboard */,
@@ -152,7 +154,10 @@
 				64F2F78D20C97716006A4061 /* TableCell.m */,
 				64F2F79020C97716006A4061 /* ViewController.h */,
 				64F2F79120C97716006A4061 /* ViewController.m */,
+				644B12FA20DD614C00208CE9 /* SignInController.h */,
+				644B12FB20DD614C00208CE9 /* SignInController.m */,
 				642984FE20CAADC60055223D /* MapTest.xcdatamodeld */,
+				644B12F820DD58ED00208CE9 /* GoogleService-Info.plist */,
 				64F2F71020C974D4006A4061 /* Supporting Files */,
 			);
 			path = PikachUA;
@@ -252,8 +257,8 @@
 			files = (
 				64F2F7AD20C977B1006A4061 /* LaunchScreen.storyboard in Resources */,
 				6466BC3F20C9AAD50040D50E /* Main.storyboard in Resources */,
+				644B12F920DD58ED00208CE9 /* GoogleService-Info.plist in Resources */,
 				64F2F7A820C97758006A4061 /* Assets.xcassets in Resources */,
-				6466BC3A20C97FB80040D50E /* GoogleService-Info.plist in Resources */,
 				64F2F79920C97716006A4061 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +316,7 @@
 				64F2F7A320C97716006A4061 /* StorageViewController.m in Sources */,
 				64F2F79620C97716006A4061 /* CollectionCell.m in Sources */,
 				64F2F7A220C97716006A4061 /* SettingsViewController.m in Sources */,
+				644B12FC20DD614C00208CE9 /* SignInController.m in Sources */,
 				64F2F7A020C97716006A4061 /* RemoveItemsViewController.m in Sources */,
 				64F2F71220C974D4006A4061 /* main.m in Sources */,
 				64F2F79B20C97716006A4061 /* MCManager.m in Sources */,
