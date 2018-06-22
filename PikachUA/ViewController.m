@@ -32,6 +32,8 @@ CLLocationManager *locationManager;
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    [_appDelegate startTracking];
+    
     self.functions = [FIRFunctions functions];
     _map.delegate = self;
     
@@ -133,7 +135,7 @@ CLLocationManager *locationManager;
             
                 item.name = itemDict[@"name"];
                 item.descriptions = itemDict[@"description"];
-                item.amount = [[itemDict objectForKey:@"amount"] integerValue];
+                item.amount = (int)[[itemDict objectForKey:@"amount"] integerValue];
                 item.id = itemDict[@"id"];
                 item.image = itemDict[@"image"];
             
@@ -194,7 +196,8 @@ CLLocationManager *locationManager;
 
 
 -(void) spawnPokemons {
-    
+    _steps.text = [NSString stringWithFormat:@"%ld",(long)_appDelegate.stepsTotal];
+    NSLog(@"STEPS:              %d", (int)_appDelegate.stepsTotal);
     NSLog(@"SPawned");
     
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MCManager.h"
+@import CoreMotion;
 @import GoogleSignIn;
+
 
 @import Firebase;
 
@@ -19,6 +21,14 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (nonatomic, strong) MCManager *mcManager;
 
+
+@property (nonatomic) NSInteger stepsTurn;
+@property (nonatomic) NSInteger stepsTotal;
+
+
+@property (nonatomic, strong) CMPedometer *pedometer;
+
+
 @property (nonatomic, strong) NSString *userID;
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
@@ -27,6 +37,7 @@
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
+- (void)startTracking;
 
 @end
 

@@ -8,11 +8,11 @@
 
 #import "AppDelegate.h"
 
+
 @interface AppDelegate ()
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
@@ -51,6 +51,11 @@ didSignInForUser:(GIDGoogleUser *)user
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+  
+    
     [GIDSignIn sharedInstance].clientID = @"203725394642-hvtkiosr6d709ls9na98sqvf1o0nos6o.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].delegate = self;
     
@@ -60,8 +65,34 @@ didSignInForUser:(GIDGoogleUser *)user
     //Configure Multipeer Manager
     _mcManager = [[MCManager alloc] init];
     
-    // Override point for customization after application launch.
+    _pedometer = [[CMPedometer alloc] init];
+    
+      // Override point for customization after application launch.
     return YES;
+}
+
+- (void)startTracking{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSInteger steps = [[defaults objectForKey:@"stepTotal"] integerValue];
+    _stepsTotal = steps;
+    // start live tracking
+    [self.pedometer startPedometerUpdatesFromDate:[NSDate date] withHandler:^(CMPedometerData * _Nullable pedometerData, NSError * _Nullable error) {
+        
+        // this block is called for each live update
+        if ([CMPedometer isStepCountingAvailable]) {
+            _stepsTotal = steps + [pedometerData.numberOfSteps integerValue];
+        }
+        
+        
+    }];
+}
+
+- (IBAction)stopTracking {
+    
+    // stop live tracking
+    [self.pedometer stopPedometerUpdates];
 }
 
 
@@ -90,7 +121,12 @@ didSignInForUser:(GIDGoogleUser *)user
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSString stringWithFormat:@"%ld",(long)_stepsTotal] forKey:@"stepTotal"];
+    
     [self saveContext];
+    [self stopTracking];
 }
 
 
