@@ -107,6 +107,8 @@ CLLocationManager *locationManager;
             poke.weight = pokeDict[@"weight"];
             poke.image = pokeDict[@"image"];
             poke.height = pokeDict[@"height"];
+            poke.catchRate = pokeDict[@"catchRate"];
+            poke.fleeRate = pokeDict[@"fleeRate"];
             poke.pokedex = pokeDict[@"pokedex"];
             poke.nickname = pokeDict[@"nickname"];
             poke.name = pokeDict[@"name"];
@@ -207,6 +209,15 @@ CLLocationManager *locationManager;
         [_map setCenterCoordinate:location.coordinate animated:YES ];
 
         
+    }
+}
+
+
+-(void)prepareForSegue :(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"catchSegue"]){
+        CatchViewController *controller = (CatchViewController *)segue.destinationViewController;
+        //controller.pokemon = 0;
+        NSLog(@"PFS");
     }
 }
 
