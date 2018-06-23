@@ -131,7 +131,8 @@ CLLocationManager *locationManager;
 
            // NSLog(@"ENTERED");
             NSDictionary *itemDict = [dict objectForKey:key];
-            if([itemDict[@"user_id"] isEqualToString:self->_appDelegate.userID]){
+            NSLog(@"%@", itemDict);
+            if([itemDict[@"user_id"] isEqualToString:self->_appDelegate.userID] && ![itemDict[@"amount"]  isEqual: @"0"]){
                 ItemInst *item = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInst" inManagedObjectContext:self->_appDelegate.managedObjectContext];
             
                 item.name = itemDict[@"name"];
