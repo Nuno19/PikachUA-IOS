@@ -16,5 +16,6 @@
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
+@property (weak, nonatomic) IBOutlet GIDSignInButton *signOutButton;
 
 @end
