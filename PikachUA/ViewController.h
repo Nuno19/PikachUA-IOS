@@ -14,6 +14,8 @@
 #import "Pokemon+CoreDataClass.h"
 #import "ItemInst+CoreDataClass.h"
 #import "Pokedex+CoreDataClass.h"
+#import "CatchViewController.h"
+#import "RestockStationViewController.h"
 @import Firebase;
 
 
@@ -34,6 +36,8 @@
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 -(void) spawnPokemons;
 @end

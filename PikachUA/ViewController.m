@@ -108,6 +108,8 @@ CLLocationManager *locationManager;
             poke.weight = pokeDict[@"weight"];
             poke.image = pokeDict[@"image"];
             poke.height = pokeDict[@"height"];
+            poke.catchRate = pokeDict[@"catchRate"];
+            poke.fleeRate = pokeDict[@"fleeRate"];
             poke.pokedex = pokeDict[@"pokedex"];
             poke.nickname = pokeDict[@"nickname"];
             poke.name = pokeDict[@"name"];
@@ -199,6 +201,15 @@ CLLocationManager *locationManager;
 }
 
 
+-(void)prepareForSegue :(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"catchSegue"]){
+        CatchViewController *controller = (CatchViewController *)segue.destinationViewController;
+        //controller.pokemon = 0;
+        NSLog(@"PFS");
+    }
+}
+
+
 -(void) spawnPokemons {
     _steps.text = [NSString stringWithFormat:@"%ld",(long)_appDelegate.stepsTotal];
     NSLog(@"STEPS:              %d", (int)_appDelegate.stepsTotal);
@@ -224,7 +235,7 @@ CLLocationManager *locationManager;
                                                                       }
                                                                       
                                                                   }
-                                                                  [_map removeAnnotations:_map.annotations];
+                                                                  [self->_map removeAnnotations:self->_map.annotations];
                                                                   for (NSDictionary *dict in result.data[@"pokemon"]){
                                                                       
                                                                       double latP = [ dict[@"latitude"] doubleValue];
@@ -234,7 +245,7 @@ CLLocationManager *locationManager;
                                                                       point.title = dict[@"name"];
                                                                       point.subtitle = dict[@"id"];
                                                                       point.coordinate = position;
-                                                                      [_map addAnnotation:point];
+                                                                      [self->_map addAnnotation:point];
                                                                       
                                                                   }
                                                               }];

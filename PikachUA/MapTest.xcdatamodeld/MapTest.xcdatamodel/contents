@@ -8,6 +8,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Pokedex" representedClassName="Pokedex" syncable="YES" codeGenerationType="class">
+        <attribute name="catchRate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fleeRate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,7 +33,7 @@
     </entity>
     <elements>
         <element name="ItemInst" positionX="171" positionY="72" width="128" height="120"/>
-        <element name="Pokedex" positionX="-36" positionY="207" width="128" height="148"/>
+        <element name="Pokedex" positionX="-36" positionY="207" width="128" height="180"/>
         <element name="Pokemon" positionX="106" positionY="210" width="128" height="88"/>
         <element name="PokemonInst" positionX="18" positionY="99" width="128" height="135"/>
     </elements>
