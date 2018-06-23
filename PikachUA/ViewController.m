@@ -19,7 +19,8 @@ CLLocationManager *locationManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(spawnPokemons ) userInfo:nil repeats:YES];
+    [[NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(spawnPokemons ) userInfo:nil repeats:YES] fire];
+    [[NSTimer scheduledTimerWithTimeInterval:180.0 target:self selector:@selector(spawnPokeStops ) userInfo:nil repeats:YES] fire];
     
     _ref = [[FIRDatabase database] reference];
     // Do any additional setup after loading the view, typically from a nib.
@@ -44,7 +45,7 @@ CLLocationManager *locationManager;
         NSDictionary *dict = snapshot.value;
         //NSLog(@"%@", dict);
         for(id key in dict){
-            NSLog(@"ENTERED");
+         //   NSLog(@"ENTERED");
             NSDictionary *pokeDict = [dict objectForKey:key];
             
             if([pokeDict[@"user_id"] isEqualToString:_appDelegate.userID]){
@@ -58,7 +59,7 @@ CLLocationManager *locationManager;
                 poke.image = pokeDict[@"image"];
             
                 [_appDelegate saveContext];
-                NSLog(@"%@", poke);
+              //  NSLog(@"%@", poke);
             }
         }
         
@@ -71,7 +72,7 @@ CLLocationManager *locationManager;
         // Get user value
         NSDictionary *dict = snapshot.value;
         for(id key in dict){
-            NSLog(@"ENTERED");
+       //     NSLog(@"ENTERED");
             NSDictionary *pokeDict = [dict objectForKey:key];
             if([pokeDict[@"user_id"] isEqualToString:_appDelegate.userID]){
                 //NSDictionary *pokeDict = [dict objectForKey:key];
@@ -84,7 +85,7 @@ CLLocationManager *locationManager;
                 poke.name = pokeDict[@"name"];
             
                 [_appDelegate saveContext];
-                NSLog(@"%@", poke);
+              //  NSLog(@"%@", poke);
             }
         }
         
@@ -98,7 +99,7 @@ CLLocationManager *locationManager;
         NSMutableArray *dict = snapshot.value;
         //NSLog(@"%@", dict);
         for(NSDictionary *pokeDict in dict){
-            NSLog(@"ENTERED");
+         //   NSLog(@"ENTERED");
             //NSDictionary *pokeDict = [dict objectForKey:key];
                 
             Pokedex *poke = [NSEntityDescription insertNewObjectForEntityForName:@"Pokedex" inManagedObjectContext:_appDelegate.managedObjectContext];
@@ -113,7 +114,7 @@ CLLocationManager *locationManager;
             poke.name = pokeDict[@"name"];
                 
             [_appDelegate saveContext];
-            NSLog(@"%@", poke);
+            //NSLog(@"%@", poke);
         }
         
     }withCancelBlock:^(NSError * _Nonnull error) {
@@ -128,7 +129,7 @@ CLLocationManager *locationManager;
         //NSLog(@"%@", dict);
         for(id key in dict){
 
-            NSLog(@"ENTERED");
+           // NSLog(@"ENTERED");
             NSDictionary *itemDict = [dict objectForKey:key];
             if([itemDict[@"user_id"] isEqualToString:_appDelegate.userID]){
                 ItemInst *item = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInst" inManagedObjectContext:_appDelegate.managedObjectContext];
@@ -140,7 +141,7 @@ CLLocationManager *locationManager;
                 item.image = itemDict[@"image"];
             
                 [_appDelegate saveContext];
-                NSLog(@"%@", item);
+               // NSLog(@"%@", item);
             }
         }
         
@@ -184,9 +185,7 @@ CLLocationManager *locationManager;
     if (fabs(howRecent) < 15.0) {
         
         // If the event is recent, do something with it.
-        NSLog(@"latitude %+.6f, longitude %+.6f\n",
-              location.coordinate.latitude,
-              location.coordinate.longitude);
+      //  NSLog(@"latitude %+.6f, longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
         
         [_map setCenterCoordinate:location.coordinate animated:YES ];
 
@@ -237,6 +236,49 @@ CLLocationManager *locationManager;
     
     
 }
+
+
+-(void) spawnPokeStops {
+
+    NSLog(@"POKESTOPS");
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    NSString *lat = [NSString stringWithFormat:@"%f",_lastLoc.coordinate.latitude];
+    NSString *lon = [NSString stringWithFormat:@"%f",_lastLoc.coordinate.longitude];
+    
+    [data setValue:lat forKey:@"lat"];
+    [data setValue:lon forKey:@"long"];
+    
+    [[_functions HTTPSCallableWithName:@"getStopInstLoc"] callWithObject:@{@"location":data}
+                                                              completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
+                                                                  if (error) {
+                                                                      if (error.domain == FIRFunctionsErrorDomain) {
+                                                                          FIRFunctionsErrorCode code = error.code;
+                                                                          NSString *message = error.localizedDescription;
+                                                                          NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
+                                                                          
+                                                                          NSLog(message,details,code);
+                                                                          return;
+                                                                      }
+                                                                      
+                                                                  }
+                                                                  [_map removeAnnotations:_map.annotations];
+                                                                  for (NSDictionary *dict in result.data[@"pokestop"]){
+                                                                      
+                                                                      double latP = [ dict[@"latitude"] doubleValue];
+                                                                      double lonP = [ dict[@"longitude"] doubleValue];
+                                                                      CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latP, lonP);
+                                                                      MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+                                                                      point.title = @"PokeStop";
+                                                                      point.subtitle = dict[@"id"];
+                                                                      point.coordinate = position;
+                                                                      [_map addAnnotation:point];
+                                                                      NSLog(@"%@", dict);
+                                                                  }
+                                                              }];
+    
+    
+}
+
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     if ([[annotation title] isEqualToString:@"Current Location"]) {
