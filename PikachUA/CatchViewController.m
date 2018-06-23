@@ -21,7 +21,7 @@
     
     NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"Pokedex"];
     
-    NSString *pokemon_name = @"Rattata";
+    NSString *pokemon_name = @"Moltres";
     
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",pokemon_name] ];
     
@@ -49,29 +49,45 @@
 
 - (IBAction)doAction:(id)sender {
     
-    if(_pokemon.catchRate.floatValue*100 > arc4random() % 100){
-        NSLog(@"Got it!");
-        PokemonInst *poke = [NSEntityDescription insertNewObjectForEntityForName:@"PokemonInst" inManagedObjectContext:_appDelegate.managedObjectContext];
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",@"Pokeball"] ];
+    
+    _item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
+    
+    if (_item.amount>0){
+    
+        _item.amount=_item.amount-1;
         
-        poke.nickname = _name.text;
-        poke.id = [NSString stringWithFormat:@"%@_%u", _appDelegate.userID, arc4random() % 100000];
-        poke.pokemon_id = _pokemon.id;
-        poke.value = _cp.text;
-        poke.image = _pokemon.image;
-        
-        [_appDelegate saveContext];
-        
-        _message.text = @"Got it!";
-        UINavigationController *navigationController = self.navigationController;
-        [navigationController popViewControllerAnimated:YES];
-    }
-    else{
-        if(_pokemon.fleeRate.floatValue*100 > arc4random() % 100){
-            NSLog(@"Oh no! It ran away!");
-            _message.text = @"Oh no! It ran away!";
+        if(_pokemon.catchRate.floatValue*100 > arc4random() % 100){
+            NSLog(@"Got it!");
+            PokemonInst *poke = [NSEntityDescription insertNewObjectForEntityForName:@"PokemonInst" inManagedObjectContext:_appDelegate.managedObjectContext];
+            
+            poke.nickname = _name.text;
+            poke.id = [NSString stringWithFormat:@"%@_%u", _appDelegate.userID, arc4random() % 100000];
+            poke.pokemon_id = _pokemon.id;
+            poke.value = _cp.text;
+            poke.image = _pokemon.image;
+            
+            [_appDelegate saveContext];
+            
+            _message.text = @"Got it!";
             UINavigationController *navigationController = self.navigationController;
             [navigationController popViewControllerAnimated:YES];
         }
+        else{
+            if(_pokemon.fleeRate.floatValue*100 > arc4random() % 100){
+                NSLog(@"Oh no! It ran away!");
+                _message.text = @"Oh no! It ran away!";
+                UINavigationController *navigationController = self.navigationController;
+                [navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }
+    else{
+        [sender setTitle:@"Out of Pokeballs!" forState:UIControlStateNormal];
     }
 }
 

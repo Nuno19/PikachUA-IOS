@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Pokedex+CoreDataClass.h"
 #import "PokemonInst+CoreDataClass.h"
+#import "ItemInst+CoreDataClass.h"
 #import "AppDelegate.h"
 
 @interface CatchViewController : UIViewController
@@ -18,13 +19,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *cp;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIButton *catching;
-@property (weak, nonatomic) IBOutlet UIButton *balls;
-@property (weak, nonatomic) IBOutlet UIButton *berries;
 @property (weak, nonatomic) IBOutlet UILabel *message;
 
 @property (strong,nonatomic) FIRDatabaseReference *ref;
 
 @property (retain,nonatomic) Pokedex *pokemon;
+@property (retain,nonatomic) ItemInst *item;
 
 - (IBAction)doAction:(id)sender;
 
