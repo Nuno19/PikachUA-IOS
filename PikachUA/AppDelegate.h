@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MCManager.h"
+#import "ItemInst+CoreDataClass.h"
 @import CoreMotion;
 @import GoogleSignIn;
 

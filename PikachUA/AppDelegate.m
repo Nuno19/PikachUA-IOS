@@ -52,10 +52,6 @@ didSignInForUser:(GIDGoogleUser *)user
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-  
-    
     [GIDSignIn sharedInstance].clientID = @"203725394642-hvtkiosr6d709ls9na98sqvf1o0nos6o.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].delegate = self;
     
@@ -84,7 +80,6 @@ didSignInForUser:(GIDGoogleUser *)user
         if ([CMPedometer isStepCountingAvailable]) {
             self->_stepsTotal = steps + [pedometerData.numberOfSteps integerValue];
         }
-        
         
     }];
 }
@@ -124,6 +119,41 @@ didSignInForUser:(GIDGoogleUser *)user
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSString stringWithFormat:@"%ld",(long)_stepsTotal] forKey:@"stepTotal"];
+    
+    [[ _ref child:@"items_inst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSLog(@"ENTER");
+        // Get user value
+        NSDictionary *dict = snapshot.value;
+        
+        NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+        
+        NSMutableArray *itemArray = [[_managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy];
+        
+        //NSLog(@"%@", dict);
+        for(id key in dict){
+            
+            // NSLog(@"ENTERED");
+            NSDictionary *itemDict = [dict objectForKey:key];
+            
+            if([itemDict[@"user_id"] isEqualToString:self->_userID]){
+                
+                NSLog(@"%lu", (sizeof itemArray) / (sizeof itemArray[0]) );
+                
+                
+                ItemInst *item = itemArray[[itemDict[@"item_id"] intValue]];
+                NSLog(@"%d", item.amount);
+                [itemDict setValue:[NSString stringWithFormat:@"%d", item.amount]  forKey:@"amount"];
+                
+                [[[self->_ref child:@"items_inst"] child:itemDict[@"id"] ] setValue:itemDict];
+                // NSLog(@"%@", item);
+            }
+        }
+        
+    }withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+    
+
     
     [self saveContext];
     [self stopTracking];

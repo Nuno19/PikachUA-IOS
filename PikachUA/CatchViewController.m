@@ -56,7 +56,7 @@
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",@"Pokeball"] ];
     
     _item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
-    
+    NSLog(@"%@", _item);
     if (_item.amount>0){
     
         _item.amount=_item.amount-1;
@@ -74,8 +74,10 @@
             [_appDelegate saveContext];
             
             _message.text = @"Got it!";
+            
             UINavigationController *navigationController = self.navigationController;
             [navigationController popViewControllerAnimated:YES];
+            [self sinc];
         }
         else{
             if(_pokemon.fleeRate.floatValue*100 > arc4random() % 100){
@@ -84,6 +86,7 @@
                 UINavigationController *navigationController = self.navigationController;
                 [navigationController popViewControllerAnimated:YES];
             }
+
         }
     }
     else{
@@ -91,6 +94,41 @@
     }
 }
 
+- (void)sinc{
+    
+    [[ _ref child:@"items_inst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSLog(@"ENTER");
+        // Get user value
+        NSDictionary *dict = snapshot.value;
+        //NSLog(@"%@", dict);
+        for(id key in dict){
+            
+            // NSLog(@"ENTERED");
+            NSDictionary *itemDict = [dict objectForKey:key];
+            
+            if([itemDict[@"user_id"] isEqualToString:_appDelegate.userID]){
+                
+                NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+                
+                
+                ItemInst *item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][itemDict[@"item_id"]];
+                
+                [itemDict setValue:[NSString stringWithFormat:@"%d", item.amount]  forKey:@"amount"];
+                
+                NSString *itemID = [NSString stringWithFormat:@"%@_%@", _appDelegate.userID,itemDict[@"item_id"]];
+                
+                NSLog(@"%@", itemID);
+                [[self->_ref child:@"items_inst" ] setValue:itemDict forKey:itemID];
+                // NSLog(@"%@", item);
+            }
+        }
+        
+    }withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+    
+    
+}
 /*
 #pragma mark - Navigation
 

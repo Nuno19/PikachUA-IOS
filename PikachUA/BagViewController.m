@@ -27,7 +27,7 @@
     
     //  [_collection registerClass:CollectionCell.class forCellWithReuseIdentifier:@"collectionCell"];
     
-    
+    [self sinc];
     
     NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
     
@@ -46,6 +46,16 @@
     [_table reloadData];
     
 }
+
+
+- (void)sinc{
+    
+        
+}
+
+
+
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
         return self.employeeTable.count;
