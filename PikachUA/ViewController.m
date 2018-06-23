@@ -19,9 +19,7 @@ CLLocationManager *locationManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(spawnPokemons ) userInfo:nil repeats:YES] fire];
-    [[NSTimer scheduledTimerWithTimeInterval:180.0 target:self selector:@selector(spawnPokeStops ) userInfo:nil repeats:YES] fire];
-    
+
     _ref = [[FIRDatabase database] reference];
     // Do any additional setup after loading the view, typically from a nib.
     locationManager = [[CLLocationManager alloc] init];
@@ -48,9 +46,9 @@ CLLocationManager *locationManager;
          //   NSLog(@"ENTERED");
             NSDictionary *pokeDict = [dict objectForKey:key];
             
-            if([pokeDict[@"user_id"] isEqualToString:_appDelegate.userID]){
+            if([pokeDict[@"user_id"] isEqualToString:self->_appDelegate.userID]){
             
-                PokemonInst *poke = [NSEntityDescription insertNewObjectForEntityForName:@"PokemonInst" inManagedObjectContext:_appDelegate.managedObjectContext];
+                PokemonInst *poke = [NSEntityDescription insertNewObjectForEntityForName:@"PokemonInst" inManagedObjectContext:self->_appDelegate.managedObjectContext];
             
                 poke.nickname = pokeDict[@"nickname"];
                 poke.id = pokeDict[@"id"];
@@ -58,7 +56,7 @@ CLLocationManager *locationManager;
                 poke.value = pokeDict[@"value"];
                 poke.image = pokeDict[@"image"];
             
-                [_appDelegate saveContext];
+                [self->_appDelegate saveContext];
               //  NSLog(@"%@", poke);
             }
         }
@@ -74,17 +72,17 @@ CLLocationManager *locationManager;
         for(id key in dict){
        //     NSLog(@"ENTERED");
             NSDictionary *pokeDict = [dict objectForKey:key];
-            if([pokeDict[@"user_id"] isEqualToString:_appDelegate.userID]){
+            if([pokeDict[@"user_id"] isEqualToString:self->_appDelegate.userID]){
                 //NSDictionary *pokeDict = [dict objectForKey:key];
             
-                Pokemon *poke = [NSEntityDescription insertNewObjectForEntityForName:@"Pokemon" inManagedObjectContext:_appDelegate.managedObjectContext];
+                Pokemon *poke = [NSEntityDescription insertNewObjectForEntityForName:@"Pokemon" inManagedObjectContext:self->_appDelegate.managedObjectContext];
             
                 
                 poke.id = pokeDict[@"id"];
                 poke.image = pokeDict[@"image"];
                 poke.name = pokeDict[@"name"];
             
-                [_appDelegate saveContext];
+                [self->_appDelegate saveContext];
               //  NSLog(@"%@", poke);
             }
         }
@@ -102,7 +100,7 @@ CLLocationManager *locationManager;
          //   NSLog(@"ENTERED");
             //NSDictionary *pokeDict = [dict objectForKey:key];
                 
-            Pokedex *poke = [NSEntityDescription insertNewObjectForEntityForName:@"Pokedex" inManagedObjectContext:_appDelegate.managedObjectContext];
+            Pokedex *poke = [NSEntityDescription insertNewObjectForEntityForName:@"Pokedex" inManagedObjectContext:self->_appDelegate.managedObjectContext];
                 
                 
             poke.id = pokeDict[@"id"];
@@ -113,7 +111,7 @@ CLLocationManager *locationManager;
             poke.nickname = pokeDict[@"nickname"];
             poke.name = pokeDict[@"name"];
                 
-            [_appDelegate saveContext];
+            [self->_appDelegate saveContext];
             //NSLog(@"%@", poke);
         }
         
@@ -131,8 +129,8 @@ CLLocationManager *locationManager;
 
            // NSLog(@"ENTERED");
             NSDictionary *itemDict = [dict objectForKey:key];
-            if([itemDict[@"user_id"] isEqualToString:_appDelegate.userID]){
-                ItemInst *item = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInst" inManagedObjectContext:_appDelegate.managedObjectContext];
+            if([itemDict[@"user_id"] isEqualToString:self->_appDelegate.userID]){
+                ItemInst *item = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInst" inManagedObjectContext:self->_appDelegate.managedObjectContext];
             
                 item.name = itemDict[@"name"];
                 item.descriptions = itemDict[@"description"];
@@ -140,7 +138,7 @@ CLLocationManager *locationManager;
                 item.id = itemDict[@"id"];
                 item.image = itemDict[@"image"];
             
-                [_appDelegate saveContext];
+                [self->_appDelegate saveContext];
                // NSLog(@"%@", item);
             }
         }
@@ -148,6 +146,7 @@ CLLocationManager *locationManager;
     }withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
+
 }
 
 - (IBAction)didTapSignOut:(id)sender {
@@ -183,11 +182,25 @@ CLLocationManager *locationManager;
      didUpdateLocations:(NSArray *)locations {
     // If it's a relatively recent event, turn off updates to save power.
     CLLocation* location = [locations lastObject];
-    _lastLoc = location;
+    int x = 0;
+    NSTimer *timer1;
+    NSTimer *timer2;
+    if(!_lastLoc){
+        x = 1;
+        timer1 = [NSTimer scheduledTimerWithTimeInterval:15.0  target:self selector:@selector(spawnPokemons ) userInfo:nil repeats:YES];
+        timer2 = [NSTimer scheduledTimerWithTimeInterval:180.0 target:self selector:@selector(spawnPokeStops) userInfo:nil repeats:YES];
+        
+    }
+    
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (fabs(howRecent) < 15.0) {
-        
+
+        _lastLoc = location;
+        if(x == 1){
+            [timer1 fire];
+            [timer2 fire];
+        }
         // If the event is recent, do something with it.
       //  NSLog(@"latitude %+.6f, longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
         
@@ -223,7 +236,9 @@ CLLocationManager *locationManager;
                                                                       }
                                                                       
                                                                   }
-                                                                  [_map removeAnnotations:_map.annotations];
+                                                                  
+                                                                  [self->_map removeAnnotations:self->_pokemonAnotations];
+                                                                  [self->_pokemonAnotations removeAllObjects];
                                                                   for (NSDictionary *dict in result.data[@"pokemon"]){
                                                                       
                                                                       double latP = [ dict[@"latitude"] doubleValue];
@@ -233,7 +248,8 @@ CLLocationManager *locationManager;
                                                                       point.title = dict[@"name"];
                                                                       point.subtitle = dict[@"id"];
                                                                       point.coordinate = position;
-                                                                      [_map addAnnotation:point];
+                                                                      [self->_pokemonAnotations addObject:point];
+                                                                      [self->_map addAnnotation:point];
                                                                       
                                                                   }
                                                               }];
@@ -265,8 +281,11 @@ CLLocationManager *locationManager;
                                                                       }
                                                                       
                                                                   }
-                                                                  [_map removeAnnotations:_map.annotations];
-                                                                  for (NSDictionary *dict in result.data[@"pokestop"]){
+                                                                  [self->_map removeAnnotations:self->_pokestopAnotations];
+                                                                  [self->_pokestopAnotations removeAllObjects];
+                                                                  NSLog(@"%@", result.data[@"pokestops"]);
+                                                                  
+                                                                  for (NSDictionary *dict in result.data[@"pokestops"]){
                                                                       
                                                                       double latP = [ dict[@"latitude"] doubleValue];
                                                                       double lonP = [ dict[@"longitude"] doubleValue];
@@ -275,7 +294,8 @@ CLLocationManager *locationManager;
                                                                       point.title = @"PokeStop";
                                                                       point.subtitle = dict[@"id"];
                                                                       point.coordinate = position;
-                                                                      [_map addAnnotation:point];
+                                                                      [self->_pokestopAnotations addObject:point];
+                                                                      [self->_map addAnnotation:point];
                                                                       NSLog(@"%@", dict);
                                                                   }
                                                               }];
@@ -292,7 +312,7 @@ CLLocationManager *locationManager;
     MKAnnotationView *annView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
     
     
-    CGRect rect = CGRectMake(0,0,75,75);
+    CGRect rect = CGRectMake(0,0,60,60);
     UIGraphicsBeginImageContext( rect.size );
     UIImage *image = [ UIImage imageNamed: annotation.title ];
     [image drawInRect:rect];

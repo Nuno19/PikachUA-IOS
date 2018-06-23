@@ -32,6 +32,8 @@
 
 @property(strong, nonatomic) CLLocation *lastLoc;
 
+@property(strong,nonnull)  NSMutableArray* pokemonAnotations;
+@property(strong,nonnull)  NSMutableArray* pokestopAnotations;
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 

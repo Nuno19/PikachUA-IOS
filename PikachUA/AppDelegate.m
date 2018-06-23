@@ -82,7 +82,7 @@ didSignInForUser:(GIDGoogleUser *)user
         
         // this block is called for each live update
         if ([CMPedometer isStepCountingAvailable]) {
-            _stepsTotal = steps + [pedometerData.numberOfSteps integerValue];
+            self->_stepsTotal = steps + [pedometerData.numberOfSteps integerValue];
         }
         
         
