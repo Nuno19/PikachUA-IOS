@@ -150,6 +150,10 @@ CLLocationManager *locationManager;
     }];
 }
 
+- (IBAction)didTapSignOut:(id)sender {
+    [[GIDSignIn sharedInstance] signOut];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

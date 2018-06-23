@@ -46,24 +46,6 @@
     
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"Pokemon"];
-    
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-    
-    [fetchRequest setSortDescriptors:@[sort]];
-    
-    
-    self.employeeCollection = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
-    NSLog(@"count=%ld", (unsigned long)self.employeeCollection.count);
-    
-    _totalPokemon.text = [NSString stringWithFormat:@"Total: %lu/12",(unsigned long)_employeeCollection.count];
-    
-    [_collection.collectionViewLayout invalidateLayout];
-    [_collection reloadData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated./Users/studentsdeti/Documents/MapTest/NSManagedObject+Pokemon.h
@@ -72,7 +54,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _employeeCollection.count;
+    return self.employeeCollection.count;
 }
 
 
@@ -90,7 +72,6 @@
 
     return cell;
 }
-
 
 /*
 #pragma mark - Navigation
