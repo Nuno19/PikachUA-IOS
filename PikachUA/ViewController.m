@@ -36,6 +36,7 @@ CLLocationManager *locationManager;
     self.functions = [FIRFunctions functions];
     _map.delegate = self;
     
+    
     NSLog(@"%@", _appDelegate.userID);
     [[ _ref child:@"pokemonsInst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
@@ -149,6 +150,34 @@ CLLocationManager *locationManager;
     }withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
+    
+    [[ _ref child:@"users"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        // Get user value
+        NSDictionary *dict = snapshot.value;
+        //NSLog(@"%@", dict);
+        for(id key in dict){
+            
+            // NSLog(@"ENTERED");
+            NSDictionary *userDict = [dict objectForKey:key];
+            NSLog(@"%@", userDict);
+            if([userDict[@"id"] isEqualToString:self->_appDelegate.userID]){
+                User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self->_appDelegate.managedObjectContext];
+                
+                user.name = userDict[@"name"];
+                user.monstersCaught = userDict[@"monstersCaught"];
+                user.startDate = userDict[@"startDate"];
+                user.id = userDict[@"id"];
+                user.totalXP = userDict[@"totalXP"];
+                
+                [self->_appDelegate saveContext];
+                // NSLog(@"%@", item);
+            }
+        }
+        
+    }withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 
 }
 
@@ -239,7 +268,6 @@ CLLocationManager *locationManager;
 
 
 -(void) spawnPokemons {
-    _steps.text = [NSString stringWithFormat:@"%ld",(long)_appDelegate.stepsTotal];
     NSLog(@"STEPS:              %d", (int)_appDelegate.stepsTotal);
     NSLog(@"SPawned");
     

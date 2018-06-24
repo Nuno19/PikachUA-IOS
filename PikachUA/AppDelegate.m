@@ -27,6 +27,7 @@ didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
     // Perform any operations on signed in user here.
     _userID = user.userID;                  // For client-side use only!
+    _userName = user.profile.name;
     
     if(_userID){
         NSLog(@"%@", _userID);

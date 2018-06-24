@@ -31,6 +31,7 @@
 
 
 @property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *userName;
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
