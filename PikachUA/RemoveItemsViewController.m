@@ -53,7 +53,7 @@
     
     _item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
     
-    if ([_amount.text intValue] <= _item.amount){
+    if ([_amount.text intValue] <= _item.amount && [_amount.text intValue] > 0){
         _item.amount=_item.amount-[_amount.text intValue];
         [_appDelegate saveContext];
         UINavigationController *navigationController = self.navigationController;
