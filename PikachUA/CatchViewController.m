@@ -21,11 +21,10 @@
     
     NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"Pokedex"];
     
-    NSString *pokemon_name = @"Moltres";
     
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",pokemon_name] ];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",_pokemon_name] ];
     
-    NSLog(@"%@", pokemon_name);
+    NSLog(@"%@", _pokemon_name);
     
     _pokemon = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
     
@@ -67,6 +66,7 @@
             
             poke.nickname = _name.text;
             poke.id = [NSString stringWithFormat:@"%@_%u", _appDelegate.userID, arc4random() % 100000];
+            _id = poke.id;
             poke.pokemon_id = _pokemon.id;
             poke.value = _cp.text;
             poke.image = _pokemon.image;
@@ -75,9 +75,8 @@
             
             _message.text = @"Got it!";
             
-            UINavigationController *navigationController = self.navigationController;
-            [navigationController popViewControllerAnimated:YES];
-            [self sinc];
+            [self performSegueWithIdentifier:@"caugthPokemon" sender:self];
+            
         }
         else{
             if(_pokemon.fleeRate.floatValue*100 > arc4random() % 100){
@@ -94,10 +93,26 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"caugthPokemon"]){
+        NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"PokemonInst"];
+        
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id == %@",_id] ];
+        
+        PokemonInst *poke = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
+        NSLog(@"NICK:   %@", poke.nickname);
+        MonsterBioController *controller = (MonsterBioController *)segue.destinationViewController;
+        controller.pokemon = poke;
+        
+
+
+    }
+}
+
 - (void)sinc{
     
     [[ _ref child:@"items_inst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSLog(@"ENTER");
+        NSLog(@"SINC");
         // Get user value
         NSDictionary *dict = snapshot.value;
         //NSLog(@"%@", dict);

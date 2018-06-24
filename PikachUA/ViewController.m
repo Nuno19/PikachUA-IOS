@@ -132,7 +132,7 @@ CLLocationManager *locationManager;
            // NSLog(@"ENTERED");
             NSDictionary *itemDict = [dict objectForKey:key];
             NSLog(@"%@", itemDict);
-            if([itemDict[@"user_id"] isEqualToString:self->_appDelegate.userID] && ![itemDict[@"amount"]  isEqual: @"0"]){
+            if([itemDict[@"user_id"] isEqualToString:self->_appDelegate.userID]){
                 ItemInst *item = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInst" inManagedObjectContext:self->_appDelegate.managedObjectContext];
             
                 item.name = itemDict[@"name"];
@@ -162,9 +162,7 @@ CLLocationManager *locationManager;
     // Dispose of any resources that can be recreated.
 }
 
--(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
-    
-}
+
 
 - (void)getLocation{
     
@@ -213,12 +211,29 @@ CLLocationManager *locationManager;
     }
 }
 
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+ 
+    _catchName = view.annotation.title;
+    if([_catchName  isEqual: @"Current Location"]){
+        
+    
+    }else if([_catchName  isEqual: @"PokeStop"]){
+        [self performSegueWithIdentifier:@"restockSegue" sender:self];
+
+    }else{
+        [self performSegueWithIdentifier:@"catchSegue" sender:self];
+    }
+}
 
 -(void)prepareForSegue :(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"catchSegue"]){
         CatchViewController *controller = (CatchViewController *)segue.destinationViewController;
-        //controller.pokemon = 0;
-        NSLog(@"PFS");
+        controller.pokemon_name = _catchName;
+        NSLog(@"PSC");
+    }
+    if([segue.identifier isEqualToString:@"restockSegue"]){
+        RestockStationViewController *controller = (RestockStationViewController *)segue.destinationViewController;
+        NSLog(@"PSRS");
     }
 }
 
@@ -295,7 +310,7 @@ CLLocationManager *locationManager;
                                                                   }
                                                                   [self->_map removeAnnotations:self->_pokestopAnotations];
                                                                   [self->_pokestopAnotations removeAllObjects];
-                                                                  NSLog(@"%@", result.data[@"pokestops"]);
+                                                                //  NSLog(@"%@", result.data[@"pokestops"]);
                                                                   
                                                                   for (NSDictionary *dict in result.data[@"pokestops"]){
                                                                       

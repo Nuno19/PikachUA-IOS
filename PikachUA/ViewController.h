@@ -21,6 +21,7 @@
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>
 
+@property (weak,nonatomic) NSString *catchName;
 
 @property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;

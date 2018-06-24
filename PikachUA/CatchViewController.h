@@ -11,6 +11,7 @@
 #import "PokemonInst+CoreDataClass.h"
 #import "ItemInst+CoreDataClass.h"
 #import "AppDelegate.h"
+#import "MonsterBioController.h"
 
 @interface CatchViewController : UIViewController
 
@@ -22,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *message;
 
 @property (strong,nonatomic) FIRDatabaseReference *ref;
+
+@property (nonnull) NSString *pokemon_name;
+@property (nonnull) NSString *id;
 
 @property (retain,nonatomic) Pokedex *pokemon;
 @property (retain,nonatomic) ItemInst *item;

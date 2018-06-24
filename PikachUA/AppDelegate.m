@@ -127,7 +127,7 @@ didSignInForUser:(GIDGoogleUser *)user
         
         NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
         
-        NSMutableArray *itemArray = [[_managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy];
+        NSMutableArray *itemArray = [[self->_managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy];
         
         //NSLog(@"%@", dict);
         for(id key in dict){

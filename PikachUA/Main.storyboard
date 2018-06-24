@@ -127,6 +127,7 @@
                         <outlet property="image" destination="D2E-QU-5s5" id="yMf-NZ-tOa"/>
                         <outlet property="message" destination="NbG-2A-wKL" id="zPx-Jg-BmG"/>
                         <outlet property="name" destination="j1a-RE-2dT" id="e6h-bX-EPT"/>
+                        <segue destination="8wo-13-VLJ" kind="show" identifier="caugthPokemon" id="Mhe-ha-iuG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7H-5M-6If" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,9 +154,6 @@
                                 <rect key="frame" x="224" y="82" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Monster"/>
-                                <connections>
-                                    <segue destination="p0t-gB-56O" kind="show" identifier="catchSegue" id="bio-Wu-M5n"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2v-4R-xnB">
                                 <rect key="frame" x="113" y="507" width="94" height="30"/>
@@ -173,9 +171,6 @@
                                 <rect key="frame" x="66" y="82" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="PokéStop"/>
-                                <connections>
-                                    <segue destination="2YI-S3-mke" kind="show" identifier="restockSegue" id="FD6-iP-pdk"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qo9-zr-j8F">
                                 <rect key="frame" x="9" y="82" width="42" height="21"/>
@@ -191,6 +186,8 @@
                     <connections>
                         <outlet property="map" destination="YBx-0O-4dB" id="OT9-Ri-Hue"/>
                         <outlet property="steps" destination="qo9-zr-j8F" id="n7S-cg-F2A"/>
+                        <segue destination="2YI-S3-mke" kind="show" identifier="restockSegue" id="g1H-pG-MlN"/>
+                        <segue destination="p0t-gB-56O" kind="show" identifier="catchSegue" id="9WI-ZM-3M7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -785,4 +782,7 @@
     <resources>
         <image name="Icon" width="844" height="839"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Mhe-ha-iuG"/>
+    </inferredMetricsTieBreakers>
 </document>
