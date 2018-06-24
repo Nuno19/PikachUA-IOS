@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +23,49 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)doAction:(id)sender {
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+    
+    NSInteger chance;
+    NSString *itemName;
+    
+    for (int i = 0; i < 3; i++)
+    {
+        chance = arc4random() % 5;
+        NSLog(@"%ld",(long)chance);
+        if(chance == 0){
+            itemName = @"Pokeball";
+        }
+        else if(chance == 1){
+            itemName = @"Great Ball";
+        }
+        else if(chance == 2){
+            itemName = @"Ultra Ball";
+        }
+        else if(chance == 3){
+            itemName = @"Razz Berry";
+        }
+        else if(chance == 4){
+            itemName = @"Golden Razz Berry";
+        }
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",itemName] ];
+        
+        _item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
+        
+        _item.amount=_item.amount+1;
+    }
 }
-*/
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
