@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5721E8D54BD76B0375858DAA /* libPods-PikachUA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F833F579CA92141CA9F177D5 /* libPods-PikachUA.a */; };
+		6407210A20E03A76009A7C19 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6407210920E03A76009A7C19 /* ProfileViewController.m */; };
 		642984FA20CAAD260055223D /* MonsterBioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642984F920CAAD260055223D /* MonsterBioController.m */; };
 		6429850020CAADC60055223D /* MapTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 642984FE20CAADC60055223D /* MapTest.xcdatamodeld */; };
 		642D070F20DFDCA700E488C7 /* ReceiveTradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642D070E20DFDCA700E488C7 /* ReceiveTradeViewController.m */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		4B6BA6ED2BB1F6AC340596FC /* Pods-PikachUA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PikachUA.release.xcconfig"; path = "Pods/Target Support Files/Pods-PikachUA/Pods-PikachUA.release.xcconfig"; sourceTree = "<group>"; };
+		6407210820E03A75009A7C19 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		6407210920E03A76009A7C19 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		642984F820CAAD260055223D /* MonsterBioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBioController.h; sourceTree = "<group>"; };
 		642984F920CAAD260055223D /* MonsterBioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBioController.m; sourceTree = "<group>"; };
 		642984FF20CAADC60055223D /* MapTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapTest.xcdatamodel; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				644B12F820DD58ED00208CE9 /* GoogleService-Info.plist */,
 				642D070A20DFDA9A00E488C7 /* ReceiveTradeViewController.h */,
 				642D070E20DFDCA700E488C7 /* ReceiveTradeViewController.m */,
+				6407210820E03A75009A7C19 /* ProfileViewController.h */,
+				6407210920E03A76009A7C19 /* ProfileViewController.m */,
 				64F2F71020C974D4006A4061 /* Supporting Files */,
 			);
 			path = PikachUA;
@@ -318,6 +323,7 @@
 				64F2F79320C97716006A4061 /* BagViewController.m in Sources */,
 				64F2F7A320C97716006A4061 /* StorageViewController.m in Sources */,
 				64F2F79620C97716006A4061 /* CollectionCell.m in Sources */,
+				6407210A20E03A76009A7C19 /* ProfileViewController.m in Sources */,
 				64F2F7A220C97716006A4061 /* SettingsViewController.m in Sources */,
 				644B12FC20DD614C00208CE9 /* SignInController.m in Sources */,
 				642D070F20DFDCA700E488C7 /* ReceiveTradeViewController.m in Sources */,

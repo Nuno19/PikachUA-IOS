@@ -13,6 +13,7 @@
 #import "PokemonInst+CoreDataClass.h"
 #import "Pokemon+CoreDataClass.h"
 #import "ItemInst+CoreDataClass.h"
+#import "User+CoreDataClass.h"
 #import "Pokedex+CoreDataClass.h"
 #import "CatchViewController.h"
 #import "RestockStationViewController.h"
@@ -25,7 +26,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *steps;
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
 
@@ -39,6 +39,7 @@
 @property(strong,nonnull)  NSMutableArray* pokestopAnotations;
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (weak, nonatomic) IBOutlet UIButton *profile;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
