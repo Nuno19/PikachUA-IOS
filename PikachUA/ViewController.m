@@ -268,6 +268,7 @@ CLLocationManager *locationManager;
 
 
 -(void) spawnPokemons {
+    _steps.text = [NSString stringWithFormat:@"Total steps: %ld",(long)_appDelegate.stepsTotal];
     NSLog(@"STEPS:              %d", (int)_appDelegate.stepsTotal);
     NSLog(@"SPawned");
     
