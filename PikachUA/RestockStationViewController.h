@@ -14,6 +14,12 @@
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UIButton *click;
+@property (weak, nonatomic) IBOutlet UILabel *itemName1;
+@property (weak, nonatomic) IBOutlet UIImageView *itemImage1;
+@property (weak, nonatomic) IBOutlet UILabel *itemName2;
+@property (weak, nonatomic) IBOutlet UIImageView *itemImage2;
+@property (weak, nonatomic) IBOutlet UILabel *itemName3;
+@property (weak, nonatomic) IBOutlet UIImageView *itemImage3;
 
 @property (strong,nonatomic) FIRDatabaseReference *ref;
 

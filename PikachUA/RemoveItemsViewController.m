@@ -16,7 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",_item.name] ];
+    
+    _item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
+    
+    _imageItem.image = [UIImage imageNamed:_item.name];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,4 +43,23 @@
 }
 */
 
+- (IBAction)deleteAction:(id)sender {
+    
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",_item.name] ];
+    
+    _item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
+    
+    if ([_amount.text intValue] <= _item.amount){
+        _item.amount=_item.amount-[_amount.text intValue];
+        [_appDelegate saveContext];
+        UINavigationController *navigationController = self.navigationController;
+        [navigationController popViewControllerAnimated:NO];
+        [navigationController popViewControllerAnimated:NO];
+        [navigationController popViewControllerAnimated:YES];
+    }
+}
 @end

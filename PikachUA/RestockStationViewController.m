@@ -55,7 +55,23 @@
         _item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
         
         _item.amount=_item.amount+1;
+        
+        if (i == 0){
+            _itemName1.text = itemName;
+            _itemImage1.image = [UIImage imageNamed:itemName];
+        }
+        else if (i == 1){
+            _itemName2.text = itemName;
+            _itemImage2.image = [UIImage imageNamed:itemName];
+        }
+        else if (i == 2){
+            _itemName3.text = itemName;
+            _itemImage3.image = [UIImage imageNamed:itemName];
+        }
+        
     }
+    
+    _click.hidden=YES;
 }
 
 /*

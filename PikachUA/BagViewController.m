@@ -87,6 +87,23 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    _selectedRow = indexPath.row;
+    NSLog(@"SR: %ld", (long)_selectedRow);
+    
+    //[self performSegueWithIdentifier:@"showDetailSegue" sender:self];
+}
+
+-(void)prepareForSegue :(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showDetailSegue"]){
+        _selectedRow = [_table indexPathsForSelectedRows][0].row;
+        RemoveItemsViewController *controller = (RemoveItemsViewController *)segue.destinationViewController;
+        controller.item = _employeeTable[_selectedRow];
+        NSLog(@"PFS");
+    }
+}
+
 /*
 #pragma mark - Navigation
 
