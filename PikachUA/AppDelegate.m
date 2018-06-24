@@ -91,6 +91,47 @@ didSignInForUser:(GIDGoogleUser *)user
 }
 
 
+-(void) sincFirebase{
+    
+    [[ _ref child:@"items_inst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSLog(@"ENTER");
+        // Get user value
+        NSDictionary *dict = snapshot.value;
+        
+        NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+        
+        NSMutableArray *itemArray = [[self->_managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy];
+        
+        //NSLog(@"%@", dict);
+        for(id key in dict){
+            
+            // NSLog(@"ENTERED");
+            NSDictionary *itemDict = [dict objectForKey:key];
+            
+            if([itemDict[@"user_id"] isEqualToString:self->_userID]){
+                
+                // NSLog(@"%lu", (sizeof itemArray) / (sizeof itemArray[0]) );
+                
+                
+                ItemInst *item = itemArray[[itemDict[@"item_id"] intValue]];
+                NSLog(@"%@", item);
+                [itemDict setValue:[NSString stringWithFormat:@"%d", item.amount]  forKey:@"amount"];
+                
+                NSString *itemUID = [NSString stringWithFormat:@"%@_%@",self->_userID,item.id ];
+                NSLog(@"%@", itemUID);
+                
+                [[[[self->_ref child:@"items_inst"] child:item.id ] child:@"amount" ] setValue:[NSString stringWithFormat:@"%d", item.amount]];
+                // NSLog(@"%@", item);
+            }
+        }
+        
+    }withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+}
+
+
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

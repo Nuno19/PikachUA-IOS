@@ -39,6 +39,7 @@
 
 - (void)saveContext;
 - (void)startTracking;
+-(void) sincFirebase;
 
 @end
 

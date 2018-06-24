@@ -27,7 +27,6 @@
     
     //  [_collection registerClass:CollectionCell.class forCellWithReuseIdentifier:@"collectionCell"];
     
-    [self sinc];
     
     NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
     
@@ -45,12 +44,50 @@
     //[_table.tableViewLayout invalidateLayout];
     [_table reloadData];
     
+    
+    [self sincFirebase];
+    
 }
 
 
-- (void)sinc{
+-(void) sincFirebase{
     
+    [[ _ref child:@"items_inst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSLog(@"ENTER");
+        // Get user value
+        NSDictionary *dict = snapshot.value;
         
+        NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+        
+        NSMutableArray *itemArray = [[self->_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy];
+        
+        //NSLog(@"%@", dict);
+        for(id key in dict){
+            
+            // NSLog(@"ENTERED");
+            NSDictionary *itemDict = [dict objectForKey:key];
+            
+            if([itemDict[@"user_id"] isEqualToString:self->_appDelegate.userID]){
+                
+                // NSLog(@"%lu", (sizeof itemArray) / (sizeof itemArray[0]) );
+                
+                
+                ItemInst *item = itemArray[[itemDict[@"item_id"] intValue]];
+                NSLog(@"%@", item);
+                [itemDict setValue:[NSString stringWithFormat:@"%d", item.amount]  forKey:@"amount"];
+                
+                NSString *itemUID = [NSString stringWithFormat:@"%@_%@",self->_appDelegate.userID,item.id ];
+                NSLog(@"%@", itemUID);
+                
+                [[[[self->_ref child:@"items_inst"] child:item.id ] child:@"amount" ] setValue:[NSString stringWithFormat:@"%d", item.amount]];
+                // NSLog(@"%@", item);
+            }
+        }
+        
+    }withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+    
 }
 
 

@@ -75,6 +75,8 @@
             
             _message.text = @"Got it!";
             
+            [self sincFirebase];
+            
             [self performSegueWithIdentifier:@"caugthPokemon" sender:self];
             
         }
@@ -84,6 +86,7 @@
                 _message.text = @"Oh no! It ran away!";
                 UINavigationController *navigationController = self.navigationController;
                 [navigationController popViewControllerAnimated:YES];
+                [self sincFirebase];
             }
 
         }
@@ -93,47 +96,60 @@
     }
 }
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"caugthPokemon"]){
+        
+        
         NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"PokemonInst"];
         
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id == %@",_id] ];
         
         PokemonInst *poke = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][0];
-        NSLog(@"NICK:   %@", poke.nickname);
+        NSLog(@"NICK:   %@", poke);
+        
+        UINavigationController *navigationController = self.navigationController;
+        [navigationController popViewControllerAnimated:YES];
+        
+        
         MonsterBioController *controller = (MonsterBioController *)segue.destinationViewController;
         controller.pokemon = poke;
         
-
-
+        
+        
     }
 }
 
-- (void)sinc{
+-(void) sincFirebase{
     
     [[ _ref child:@"items_inst"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSLog(@"SINC");
+        NSLog(@"ENTER");
         // Get user value
         NSDictionary *dict = snapshot.value;
+        
+        NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+        
+        NSMutableArray *itemArray = [[self->_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy];
+        
         //NSLog(@"%@", dict);
         for(id key in dict){
             
             // NSLog(@"ENTERED");
             NSDictionary *itemDict = [dict objectForKey:key];
             
-            if([itemDict[@"user_id"] isEqualToString:_appDelegate.userID]){
+            if([itemDict[@"user_id"] isEqualToString:self->_appDelegate.userID]){
                 
-                NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"ItemInst"];
+                // NSLog(@"%lu", (sizeof itemArray) / (sizeof itemArray[0]) );
                 
                 
-                ItemInst *item = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy][itemDict[@"item_id"]];
-                
+                ItemInst *item = itemArray[[itemDict[@"item_id"] intValue]];
+                NSLog(@"%@", item);
                 [itemDict setValue:[NSString stringWithFormat:@"%d", item.amount]  forKey:@"amount"];
                 
-                NSString *itemID = [NSString stringWithFormat:@"%@_%@", _appDelegate.userID,itemDict[@"item_id"]];
+                NSString *itemUID = [NSString stringWithFormat:@"%@_%@",self->_appDelegate.userID,item.id ];
+                NSLog(@"%@", itemUID);
                 
-                NSLog(@"%@", itemID);
-                [[self->_ref child:@"items_inst" ] setValue:itemDict forKey:itemID];
+                [[[[self->_ref child:@"items_inst"] child:item.id ] child:@"amount" ] setValue:[NSString stringWithFormat:@"%d", item.amount]];
                 // NSLog(@"%@", item);
             }
         }
@@ -142,8 +158,9 @@
         NSLog(@"%@", error.localizedDescription);
     }];
     
-    
 }
+
+
 /*
 #pragma mark - Navigation
 
