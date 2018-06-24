@@ -31,7 +31,5 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collection;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
-- (IBAction)transfer:(id)sender;
-- (IBAction)trade:(id)sender;
 
 @end

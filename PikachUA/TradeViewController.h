@@ -9,16 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "AppDelegate.h"
+#import "PokemonInst+CoreDataClass.h"
 
 @interface TradeViewController : UIViewController <MCBrowserViewControllerDelegate>
-
-
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UISwitch *swVisible;
 @property (weak, nonatomic) IBOutlet UITableView *tblConnectedDevices;
 @property (weak, nonatomic) IBOutlet UIButton *btnDisconnect;
 @property (weak, nonatomic) IBOutlet UILabel *testText;
+
+@property (retain,nonatomic) PokemonInst *pokemon;
 
 
 - (IBAction)browseForDevices:(id)sender;

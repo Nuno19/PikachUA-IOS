@@ -63,7 +63,8 @@
 }
 
 - (IBAction)sendText:(id)sender {
-    NSData *dataToSend = [@"Test" dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *data = [NSString stringWithFormat:@"%@/%@/%@/%@/%@", _pokemon.id, _pokemon.pokemon_id, _pokemon.nickname, _pokemon.image, _pokemon.value];
+    NSData *dataToSend = [data dataUsingEncoding:NSUTF8StringEncoding];
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     
@@ -74,6 +75,13 @@
     
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
+    }
+    else {
+        [_appDelegate.managedObjectContext deleteObject:_pokemon];
+        [_appDelegate saveContext];
+        UINavigationController *navigationController = self.navigationController;
+        [navigationController popViewControllerAnimated:NO];
+        [navigationController popViewControllerAnimated:YES];
     }
     
 }
@@ -86,7 +94,20 @@
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *receivedText = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     
-    [_testText performSelectorOnMainThread:@selector(setText:) withObject:[_testText.text stringByAppendingString:[NSString stringWithFormat:@"%@ wrote:\n%@\n\n", peerDisplayName, receivedText]] waitUntilDone:NO];
+    NSArray *array = [receivedText componentsSeparatedByString:@"/"];
+    
+    PokemonInst *poke = [NSEntityDescription insertNewObjectForEntityForName:@"PokemonInst" inManagedObjectContext:_appDelegate.managedObjectContext];
+    
+    
+    poke.id = [NSString stringWithFormat:@"%@_%u", _appDelegate.userID, arc4random() % 100000];
+    poke.pokemon_id = array[1];
+    poke.nickname = array[2];
+    poke.image = array[3];
+    poke.value = array[4];
+    
+    [_appDelegate saveContext];
+    
+    /*[_testText performSelectorOnMainThread:@selector(setText:) withObject:[_testText.text stringByAppendingString:[NSString stringWithFormat:@"%@ wrote:\n%@\n\n", peerDisplayName, receivedText]] waitUntilDone:NO];*/
 }
 
 

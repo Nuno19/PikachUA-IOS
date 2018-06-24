@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Iy-Be-Zdn" userLabel="CollectionView">
-                                <rect key="frame" x="16" y="64" width="288" height="463"/>
+                                <rect key="frame" x="16" y="64" width="288" height="484"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="2" id="21n-GL-SJs">
@@ -268,29 +268,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnO-Wv-w9t">
-                                <rect key="frame" x="274" y="530" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sort"/>
-                                <connections>
-                                    <action selector="trade:" destination="8wo-13-VLJ" eventType="touchUpInside" id="FxF-Ya-UL0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLU-Vq-szM">
-                                <rect key="frame" x="16" y="530" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Transfer"/>
-                                <connections>
-                                    <action selector="transfer:" destination="8wo-13-VLJ" eventType="touchUpInside" id="39s-UF-Bjd"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-Ye-LJD">
-                                <rect key="frame" x="105" y="535" width="111" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -298,13 +275,12 @@
                     <connections>
                         <outlet property="collection" destination="0Iy-Be-Zdn" id="igW-eL-zAC"/>
                         <outlet property="search" destination="03O-CY-RZN" id="iET-bo-Z60"/>
-                        <outlet property="selectedPokemon" destination="Bge-Ye-LJD" id="Nnu-DN-4Pe"/>
                         <outlet property="totalPokemon" destination="BEJ-dy-VBG" id="Y0o-Ws-Ljf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAv-zP-tys" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1998.75" y="1089.0845070422536"/>
+            <point key="canvasLocation" x="1998" y="1089"/>
         </scene>
         <!--Bag-->
         <scene sceneID="r0i-nU-91A">
@@ -326,7 +302,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sdY-c7-Tbg" userLabel="TableView">
-                                <rect key="frame" x="16" y="109" width="288" height="459"/>
+                                <rect key="frame" x="16" y="80" width="288" height="488"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -369,6 +345,7 @@
                                             <outlet property="itemDescription" destination="0Ty-kx-psb" id="DRQ-20-vDo"/>
                                             <outlet property="itemImage" destination="d5c-k3-FU0" id="jtY-O7-3SF"/>
                                             <outlet property="itemName" destination="BnQ-zZ-akA" id="4IV-jz-qeb"/>
+                                            <segue destination="b7Y-lo-d59" kind="show" id="qiE-74-nEj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -396,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="voQ-tc-mNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2872.5" y="1088.0281690140846"/>
+            <point key="canvasLocation" x="2872" y="1088"/>
         </scene>
         <!--Remove Items-->
         <scene sceneID="qK9-pu-85R">
@@ -518,10 +495,10 @@
             </objects>
             <point key="canvasLocation" x="1132.5" y="1086.9718309859154"/>
         </scene>
-        <!--Trade View-->
+        <!--Trade-->
         <scene sceneID="zXz-dk-QHx">
             <objects>
-                <viewController title="Trade View" id="w6N-FJ-4Dd" customClass="TradeViewController" sceneMemberID="viewController">
+                <viewController title="Trade" id="w6N-FJ-4Dd" customClass="TradeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zzT-wF-rXB"/>
                         <viewControllerLayoutGuide type="bottom" id="RlJ-05-2Zo"/>
@@ -601,12 +578,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqc-j5-luf">
-                                <rect key="frame" x="128" y="526" width="40" height="30"/>
+                                <rect key="frame" x="215" y="526" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Trade"/>
                                 <connections>
-                                    <action selector="trade:" destination="8p1-Rc-Fag" eventType="touchUpInside" id="9Pn-O3-PE6"/>
-                                    <segue destination="w6N-FJ-4Dd" kind="show" id="0tR-PV-3eh"/>
+                                    <segue destination="w6N-FJ-4Dd" kind="show" identifier="tradeSegue" id="0tR-PV-3eh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6l-0j-iGs" userLabel="Name">
@@ -659,6 +635,14 @@
                                 <rect key="frame" x="100" y="124" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLU-Vq-szM">
+                                <rect key="frame" x="68" y="526" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Transfer"/>
+                                <connections>
+                                    <action selector="transferAction:" destination="8p1-Rc-Fag" eventType="touchUpInside" id="9HI-wP-4jD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -669,12 +653,13 @@
                         <outlet property="name" destination="J6l-0j-iGs" id="fZt-eD-uUD"/>
                         <outlet property="nickname" destination="GU0-N6-lEd" id="Ose-9h-k9t"/>
                         <outlet property="pokedex" destination="Biz-WY-tzH" id="I9m-1r-enU"/>
+                        <outlet property="transfer" destination="yLU-Vq-szM" id="GAc-23-i0f"/>
                         <outlet property="weight" destination="hXB-VM-LPs" id="7m4-sb-kyE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBM-VC-Smv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1998.75" y="1855.9859154929577"/>
+            <point key="canvasLocation" x="1998" y="1855"/>
         </scene>
         <!--Menu-->
         <scene sceneID="Uby-ek-FPd">

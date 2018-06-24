@@ -10,6 +10,7 @@
 #import "Pokedex+CoreDataClass.h"
 #import "PokemonInst+CoreDataClass.h"
 #import "AppDelegate.h"
+#import "TradeViewController.h"
 
 @import Firebase;
 
@@ -30,4 +31,8 @@
 
 @property (retain,nonatomic) PokemonInst *pokemon;
 @property (retain,nonatomic) Pokedex *poked;
+
+@property (weak, nonatomic) IBOutlet UIButton *transfer;
+
+- (IBAction)transferAction:(id)sender;
 @end

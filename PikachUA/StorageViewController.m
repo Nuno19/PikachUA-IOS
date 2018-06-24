@@ -15,6 +15,38 @@
 
 @implementation StorageViewController
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidLoad];
+    
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    self.ref = [[FIRDatabase database] reference];
+    
+    // Do any additional setup after loading the view.
+    self.collection.delegate=self;
+    self.collection.dataSource=self;
+    
+    //  [_collection registerClass:CollectionCell.class forCellWithReuseIdentifier:@"collectionCell"];
+    
+    
+    
+    NSFetchRequest *fetchRequest= [[NSFetchRequest alloc] initWithEntityName:@"PokemonInst"];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    
+    [fetchRequest setSortDescriptors:@[sort]];
+    
+    
+    self.employeeCollection = [[_appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil ] mutableCopy];
+    
+    NSLog(@"count=%ld", (unsigned long)self.employeeCollection.count);
+    
+    _totalPokemon.text = [NSString stringWithFormat:@"Total: %lu/200",(unsigned long)_employeeCollection.count];
+    
+    [_collection.collectionViewLayout invalidateLayout];
+    [_collection reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -106,10 +138,4 @@
 }
 */
 
-
-
-- (IBAction)transfer:(id)sender {
-}
-- (IBAction)trade:(id)sender {
-}
 @end

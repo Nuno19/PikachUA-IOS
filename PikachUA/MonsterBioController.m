@@ -58,6 +58,21 @@
 }
 */
 
-- (IBAction)trade:(id)sender {
+- (IBAction)tradeAction:(id)sender {
+    [self performSegueWithIdentifier:@"tradeSegue" sender:self];
 }
+
+- (IBAction)transferAction:(id)sender {
+    [_appDelegate.managedObjectContext deleteObject:_pokemon];
+    [_appDelegate saveContext];
+    UINavigationController *navigationController = self.navigationController;
+    [navigationController popViewControllerAnimated:YES];
+}
+
+-(void)prepareForSegue :(UIStoryboardSegue *)segue sender:(id)sender{
+    TradeViewController *controller = (TradeViewController *)segue.destinationViewController;
+    controller.pokemon = _pokemon;
+    NSLog(@"Trade");
+}
+
 @end
